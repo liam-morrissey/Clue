@@ -15,7 +15,9 @@ public class IntBoard {
 	// Set that contains the list of cells that can be reached
 	private Set<BoardCell> targets;
 	
+	// Number of rows of the board
 	public final int NUM_ROWS = 4;
+	// Number of columns of the board
 	public final int NUM_COLS = 4;
 	
 	public IntBoard() {
@@ -77,15 +79,19 @@ public class IntBoard {
 		return adjacencies.get(cell);
 	}
 	
+	// Sets up for recursive call to find targets
 	public void calcTargets(BoardCell startCell, int pathLength) {
 		visited.add(startCell);
 		findAllTargets(startCell, pathLength);
 	}
 	
+	// Recursive function that finds targets
 	private void findAllTargets(BoardCell startCell, int pathLength) {
+		// Loops through adjacent cells
 		for(BoardCell adjCell : getAdjList(startCell)) {
 			if(!visited.contains(adjCell)) {
 				visited.add(adjCell);
+				// Adds the adjacent cell to targets if the path length is 1 otherwise, recursively call find all targets with adjacent cells
 				if(pathLength == 1) {
 					targets.add(adjCell);
 				} else {
