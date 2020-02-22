@@ -1,5 +1,6 @@
 package experiment;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,7 +20,7 @@ public class IntBoard {
 		
 	}
 	
-	public Set<BoardCell> getAdjList() {
+	public Set<BoardCell> getAdjList(BoardCell cell) {
 		return null;
 	}
 	
@@ -28,6 +29,10 @@ public class IntBoard {
 	}
 	
 	public Set<BoardCell> getTargets(){
+		return null;
+	}
+
+	public BoardCell getCell(int i, int j) {
 		return null;
 	}
 }
