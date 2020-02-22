@@ -33,12 +33,12 @@ public class IntBoard {
 	
 	public void calcAdjacencies() {
 		// Holds the cells adjacent to the current cell
-		Set<BoardCell> tempAdj = new HashSet<BoardCell>();
+		Set<BoardCell> tempAdj;
 		
 		// Loops through all board spaces
 		for(int i = 0; i < NUM_ROWS; i++) {
 			for(int j = 0; j < NUM_COLS; j++) {
-				tempAdj.clear();
+				tempAdj = new HashSet<BoardCell>();
 				
 				// Check if the position above is valid
 				if(i > 0) {
