@@ -6,9 +6,13 @@ import java.util.Map;
 import java.util.Set;
 
 public class IntBoard {
+	// Array that holds all the cells in the board
 	private BoardCell[][] board;
+	// Map that has a key of a cell and a value that is the set of all adjacent tiles to that cell
 	private Map<BoardCell, Set<BoardCell>> adjacencies;
+	// Set that contains all the cells that have been visited in the recursive call
 	private Set<BoardCell> visited;
+	// Set that contains the list of cells that can be reached
 	private Set<BoardCell> targets;
 	
 	public final int NUM_ROWS = 4;
@@ -31,6 +35,10 @@ public class IntBoard {
 		calcAdjacencies();
 	}
 	
+	/*
+	 * Will go through every cell on the board and create a set of adjacent tiles
+	 * This set will be inserted into the map
+	 */
 	public void calcAdjacencies() {
 		// Holds the cells adjacent to the current cell
 		Set<BoardCell> tempAdj;
@@ -61,27 +69,35 @@ public class IntBoard {
 				}
 				
 				adjacencies.put(board[i][j], tempAdj);
-				
-				// System.out.println(board[i][j] + " " + tempAdj);
 			}
 		}
-		
-		/*for(BoardCell x : adjacencies.keySet()) {
-			System.out.println(x + " " + adjacencies.get(x));
-		}*/
 	}
 	
 	public Set<BoardCell> getAdjList(BoardCell cell) {
 		return adjacencies.get(cell);
 	}
 	
-	// Recursive function to find where on the board the player can move to
 	public void calcTargets(BoardCell startCell, int pathLength) {
-		
+		visited.add(startCell);
+		findAllTargets(startCell, pathLength);
+	}
+	
+	private void findAllTargets(BoardCell startCell, int pathLength) {
+		for(BoardCell adjCell : getAdjList(startCell)) {
+			if(!visited.contains(adjCell)) {
+				visited.add(adjCell);
+				if(pathLength == 1) {
+					targets.add(adjCell);
+				} else {
+					findAllTargets(adjCell, pathLength - 1);
+				}
+				visited.remove(adjCell);
+			}
+		}
 	}
 	
 	public Set<BoardCell> getTargets(){
-		return null;
+		return targets;
 	}
 
 	public BoardCell getCell(int i, int j) {
