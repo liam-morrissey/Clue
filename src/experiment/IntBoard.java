@@ -14,29 +14,29 @@ public class IntBoard {
 	private Set<BoardCell> visited;
 	// Set that contains the list of cells that can be reached
 	private Set<BoardCell> targets;
-	
+
 	// Number of rows of the board
 	public final int NUM_ROWS = 4;
 	// Number of columns of the board
 	public final int NUM_COLS = 4;
-	
+
 	public IntBoard() {
 		super();
 		board = new BoardCell[NUM_ROWS][NUM_COLS];
-		
+
 		// Initializes the board so that every cell has a column and row number
 		for(int i = 0; i < NUM_ROWS; i++) {
 			for(int j = 0; j < NUM_COLS; j++) {
 				board[i][j] = new BoardCell(i, j);
 			}
 		}
-		
+
 		adjacencies = new HashMap<BoardCell, Set<BoardCell>>();
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
 		calcAdjacencies();
 	}
-	
+
 	/*
 	 * Will go through every cell on the board and create a set of adjacent tiles
 	 * This set will be inserted into the map
@@ -44,47 +44,47 @@ public class IntBoard {
 	public void calcAdjacencies() {
 		// Holds the cells adjacent to the current cell
 		Set<BoardCell> tempAdj;
-		
+
 		// Loops through all board spaces
 		for(int i = 0; i < NUM_ROWS; i++) {
 			for(int j = 0; j < NUM_COLS; j++) {
 				tempAdj = new HashSet<BoardCell>();
-				
+
 				// Check if the position above is valid
 				if(i > 0) {
 					tempAdj.add(board[i - 1][j]);
 				}
-				
+
 				// Check if the position below is valid
 				if(i < NUM_ROWS - 1) {
 					tempAdj.add(board[i + 1][j]);
 				}
-				
+
 				// Check if the position to the left is valid
 				if(j > 0) {
 					tempAdj.add(board[i][j - 1]);
 				}
-				
+
 				// Check if the position to the right is valid
 				if(j < NUM_COLS - 1) {
 					tempAdj.add(board[i][j + 1]);
 				}
-				
+
 				adjacencies.put(board[i][j], tempAdj);
 			}
 		}
 	}
-	
+
 	public Set<BoardCell> getAdjList(BoardCell cell) {
 		return adjacencies.get(cell);
 	}
-	
+
 	// Sets up for recursive call to find targets
 	public void calcTargets(BoardCell startCell, int pathLength) {
 		visited.add(startCell);
 		findAllTargets(startCell, pathLength);
 	}
-	
+
 	// Recursive function that finds targets
 	private void findAllTargets(BoardCell startCell, int pathLength) {
 		// Loops through adjacent cells
@@ -101,7 +101,7 @@ public class IntBoard {
 			}
 		}
 	}
-	
+
 	public Set<BoardCell> getTargets(){
 		return targets;
 	}
