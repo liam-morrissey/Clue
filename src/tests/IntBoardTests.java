@@ -8,6 +8,10 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
+/*
+ * @author Brandt Ross
+ * @author Liam Morrissey
+ */
 public class IntBoardTests {
 	IntBoard board;
 

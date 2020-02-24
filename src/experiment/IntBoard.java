@@ -5,6 +5,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/*
+ * @author Brandt Ross
+ * @author Liam Morrissey
+ * 
+ * This class handles the board and contains functions that handles calculating where a player can go
+ */
 public class IntBoard {
 	// Array that holds all the cells in the board
 	private BoardCell[][] board;
