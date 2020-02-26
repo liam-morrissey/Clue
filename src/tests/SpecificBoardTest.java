@@ -103,7 +103,7 @@ public class SpecificBoardTest {
 		assertEquals('F', board.getCellAt(7, 19).getInitial());
 		assertEquals('T', board.getCellAt(0, 19).getInitial());
 		assertEquals('D', board.getCellAt(8, 18).getInitial());
-		assertEquals('K', board.getCellAt(18, 18).getInitial());
+		assertEquals('K', board.getCellAt(20, 19).getInitial());
 		assertEquals('W', board.getCellAt(16, 19).getInitial());
 	}
 }
