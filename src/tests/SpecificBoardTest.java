@@ -34,6 +34,20 @@ public class SpecificBoardTest {
 		board.initialize();
 	}
 	
+	// Tests that the correct number of doorways have been loaded (there are 20)
+	@Test
+	public void testNumDoorways() {
+		int numDoors = 0;
+		for (int row = 0; row < board.getNumRows(); row++) {
+			for (int col = 0; col < board.getNumColumns(); col++) {
+				BoardCell cell = board.getCellAt(row, col);
+				if (cell.isDoorway())
+					numDoors++;
+			}
+		}
+		Assert.assertEquals(20, numDoors);
+	}
+	
 	@Test
 	public void testDimensions() {
 		// The board should have 19 rows and 20 columns
