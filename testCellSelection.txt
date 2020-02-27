@@ -1,2 +1,0 @@
-Cells for testing were selected at random from candidates that fit what needed to be tested.
-There are a few exceptions where edge cases were tested.

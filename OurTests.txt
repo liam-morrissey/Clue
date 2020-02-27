@@ -1,0 +1,11 @@
+Authors: Liam Morrissey and Brandt Ross
+Correct rows and cols.
+Door at (0,4) should open right.
+Door at (2,3) should open down.
+Door at (9,16) should open left.
+Door at (14,10) should be opening upwards.
+also checked to make sure that normal boardcell's weren't doors.
+Checked that at least one cell in room had the right initials.
+Checked that the legend had the right names associated with the Initials.
+Cells for testing were selected at random from candidates that fit what needed to be tested.
+There are a few exceptions where edge cases were tested.
