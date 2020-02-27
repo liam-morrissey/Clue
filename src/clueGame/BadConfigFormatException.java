@@ -1,4 +1,5 @@
 package clueGame;
+//Authors: Liam Morrissey and Brandt Ross
 
 public class BadConfigFormatException extends Exception {
 

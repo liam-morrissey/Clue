@@ -1,9 +1,13 @@
 package clueGame;
-
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+//Authors: Liam Morrissey and Brandt Ross
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import java.util.Scanner;
 
 public class Board {
 	// Array that holds all the cells in the board
@@ -14,17 +18,34 @@ public class Board {
 	private Set<BoardCell> visited;
 	// Set that contains the list of cells that can be reached
 	private Set<BoardCell> targets;
+	// Legend that says what each character is
+	private Map<Character, String> legend;
 	// Number of rows of the board
-	private int numRows = 4;
+	private int numRows;
 	// Number of columns of the board
-	private int numCols = 4;
+	private int numCols;
+	// Csv file for the board
+	private String csvFile;
+	// Lengend file for the board
+	private String legendFile;
 
 	private final int MAX_BOARD_SIZE = 50;
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
 	// constructor is private to ensure only one can be created
-	private Board() {}
+	private Board() {
+		super();
+		numRows = MAX_BOARD_SIZE;
+		numCols = MAX_BOARD_SIZE;
+		board = new BoardCell[numRows][numCols];
+
+		adjacencies = new HashMap<BoardCell, Set<BoardCell>>();
+		visited = new HashSet<BoardCell>();
+		targets = new HashSet<BoardCell>();
+		legend = new HashMap<Character, String>();
+		calcAdjacencies();
+	}
 	// this method returns the only Board
 	public static Board getInstance() {
 		return theInstance;
@@ -100,32 +121,51 @@ public class Board {
 	}
 
 	public BoardCell getCellAt(int i, int j) {
-		BoardCell cell = new BoardCell(i, j);
-		return cell;
-		// return board[i][j];
+		return board[i][j];
 	}
 
-
-
-
-
-
-
-
-
-
-	public void setConfigFiles(String string, String string2) {
-		// TODO Auto-generated method stub
-
+	public void setConfigFiles(String csvFile, String legendFile) {
+		this.csvFile = csvFile;
+		this.legendFile = legendFile;
 	}
 
 	public void initialize() {
-		// TODO Auto-generated method stub
-
+		FileReader file;
+		try {
+			file = new FileReader(csvFile);
+			Scanner in = new Scanner(file);
+			String temp;
+			// Keeps track of which row we are on
+			int i = 0;
+			// Goes through each value and initializes the board array with locations and its character
+			while(in.hasNext()) {
+				temp = in.next();
+				String arr[] = temp.split(",");
+				numCols = arr.length;
+				for(int j = 0; j < arr.length; j++) {
+					board[i][j] = new BoardCell(i, j, arr[j]);
+				}
+				i++;
+			}
+			numRows = i;
+			
+			file = new FileReader(legendFile);
+			in = new Scanner(file);
+			// Loop through lines and add them to the legend
+			while(in.hasNext()) {
+				temp = in.nextLine();
+				String arr[] = temp.split(", ");
+				legend.put(arr[0].charAt(0), arr[1]);
+			}
+			in.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Files not found");
+		}
+		
+		
 	}
 
 	public Map<Character, String> getLegend() {
-		Map<Character, String> legend = new HashMap<Character, String>();
 		return legend;
 	}
 

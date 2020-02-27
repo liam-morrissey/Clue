@@ -21,8 +21,8 @@ import clueGame.DoorDirection;
 public class SpecificBoardTest {
 	// Constants used for testing the file was loaded correctly at a glance
 	public static final int LEGEND_SIZE = 11;
-	public static final int NUM_ROWS = 19;
-	public static final int NUM_COLUMNS = 20;
+	public static final int NUM_ROWS = 20;
+	public static final int NUM_COLUMNS = 21;
 	
 	// Creates the board to be tested
 	private static Board board;
@@ -50,7 +50,7 @@ public class SpecificBoardTest {
 	
 	@Test
 	public void testDimensions() {
-		// The board should have 19 rows and 20 columns
+		// The board should have 20 rows and 21 columns
 		assertEquals(NUM_ROWS, board.getNumRows());
 		assertEquals(NUM_COLUMNS, board.getNumColumns());	
 	}
@@ -95,15 +95,15 @@ public class SpecificBoardTest {
 	@Test
 	public void testRoomNames() {
 		assertEquals('S', board.getCellAt(1, 1).getInitial());
-		assertEquals('L', board.getCellAt(2, 8).getInitial());
-		assertEquals('R', board.getCellAt(2, 13).getInitial());
-		assertEquals('B', board.getCellAt(0, 18).getInitial());
-		assertEquals('H', board.getCellAt(10, 1).getInitial());
-		assertEquals('X', board.getCellAt(9, 10).getInitial());
-		assertEquals('F', board.getCellAt(7, 19).getInitial());
+		assertEquals('L', board.getCellAt(8, 2).getInitial());
+		assertEquals('R', board.getCellAt(13, 2).getInitial());
+		assertEquals('B', board.getCellAt(18, 0).getInitial());
+		assertEquals('H', board.getCellAt(1, 10).getInitial());
+		assertEquals('X', board.getCellAt(10, 9).getInitial());
+		assertEquals('F', board.getCellAt(19, 7).getInitial());
 		assertEquals('T', board.getCellAt(0, 19).getInitial());
 		assertEquals('D', board.getCellAt(8, 18).getInitial());
-		assertEquals('K', board.getCellAt(20, 19).getInitial());
-		assertEquals('W', board.getCellAt(16, 19).getInitial());
+		assertEquals('K', board.getCellAt(19, 20).getInitial());
+		assertEquals('W', board.getCellAt(19, 16).getInitial());
 	}
 }
