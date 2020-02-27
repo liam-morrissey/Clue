@@ -100,7 +100,9 @@ public class Board {
 	}
 
 	public BoardCell getCellAt(int i, int j) {
-		return board[i][j];
+		BoardCell cell = new BoardCell(i, j);
+		return cell;
+		// return board[i][j];
 	}
 
 
@@ -123,8 +125,8 @@ public class Board {
 	}
 
 	public Map<Character, String> getLegend() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<Character, String> legend = new HashMap<Character, String>();
+		return legend;
 	}
 
 	public int getNumRows() {
