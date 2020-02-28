@@ -56,4 +56,8 @@ public class BoardCell {
 	public char getInitial() {
 		return cellText.charAt(0);
 	}
+	
+	public String toString() {
+		return "Row: " + row + " Col: " + column + " Dir: " + dir + " Text: " + cellText;
+	}
 }

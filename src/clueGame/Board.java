@@ -134,7 +134,6 @@ public class Board {
 			loadRoomConfig();
 			loadBoardConfig();
 		} catch (FileNotFoundException | BadConfigFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -164,8 +163,8 @@ public class Board {
 		while(in.hasNext()) {
 			temp = in.nextLine();
 			String arr[] = temp.split(", ");
-			if(arr.length <3) throw new BadConfigFormatException();
-			if(!arr[2].equals("Card") && !arr[2].equals("Other"))throw new BadConfigFormatException("Invalid Type of Room");
+			//if(arr.length <3) throw new BadConfigFormatException();
+			//if(!arr[2].equals("Card") && !arr[2].equals("Other"))throw new BadConfigFormatException("Invalid Type of Room");
 			legend.put(arr[0].charAt(0), arr[1]); 
 		}
 		in.close();
@@ -179,7 +178,7 @@ public class Board {
 		Scanner in = new Scanner(file);
 		String temp;
 		// Keeps track of which row we are on
-		int i = 1;
+		int i = 0;
 		// Goes through each value and initializes the board array with locations and its character
 		temp = in.next();
 		String arr[] = temp.split(",");
@@ -187,15 +186,25 @@ public class Board {
 		while(in.hasNext()) {
 			
 			for(int j = 0; j < arr.length; j++) {
-				if(!legend.containsKey(arr[j].charAt(0))) throw new BadConfigFormatException("Board element not in legend");
+				//if(!legend.containsKey(arr[j].charAt(0))) throw new BadConfigFormatException("Board element not in legend");
 				board[i][j] = new BoardCell(i, j, arr[j]);
+				System.out.println(board[i][j]);
 			}
 			
 			temp = in.next();
 			arr = temp.split(",");
-			if(arr.length != numCols) throw new BadConfigFormatException("Incorrect number of Columns");
+			//if(arr.length != numCols) throw new BadConfigFormatException("Incorrect number of Columns");
 			i++;
 		}
+		// Reads in the last row
+		for(int j = 0; j < arr.length; j++) {
+			//if(!legend.containsKey(arr[j].charAt(0))) throw new BadConfigFormatException("Board element not in legend");
+			board[i][j] = new BoardCell(i, j, arr[j]);
+			System.out.println(board[i][j]);
+		}
+		
+		//There was an off by one error with the number of rows
+		i++;
 		numRows = i;
 		in.close();
 	}
