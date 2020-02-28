@@ -130,38 +130,13 @@ public class Board {
 	}
 
 	public void initialize() {
-		FileReader file;
 		try {
-			file = new FileReader(csvFile);
-			Scanner in = new Scanner(file);
-			String temp;
-			// Keeps track of which row we are on
-			int i = 0;
-			// Goes through each value and initializes the board array with locations and its character
-			while(in.hasNext()) {
-				temp = in.next();
-				String arr[] = temp.split(",");
-				numCols = arr.length;
-				for(int j = 0; j < arr.length; j++) {
-					board[i][j] = new BoardCell(i, j, arr[j]);
-				}
-				i++;
-			}
-			numRows = i;
-			
-			file = new FileReader(legendFile);
-			in = new Scanner(file);
-			// Loop through lines and add them to the legend
-			while(in.hasNext()) {
-				temp = in.nextLine();
-				String arr[] = temp.split(", ");
-				legend.put(arr[0].charAt(0), arr[1]);
-			}
-			in.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("Files not found");
+			loadRoomConfig();
+			loadBoardConfig();
+		} catch (FileNotFoundException | BadConfigFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
 		
 	}
 
@@ -175,5 +150,53 @@ public class Board {
 
 	public int getNumColumns() {
 		return numCols;
+	}
+	public void loadRoomConfig() throws BadConfigFormatException, FileNotFoundException{
+		
+		FileReader file;
+		
+		file = new FileReader(csvFile);
+		Scanner in = new Scanner(file);
+		String temp;
+		file = new FileReader(legendFile);
+		in = new Scanner(file);
+		// Loop through lines and add them to the legend
+		while(in.hasNext()) {
+			temp = in.nextLine();
+			String arr[] = temp.split(", ");
+			if(arr.length <3) throw new BadConfigFormatException();
+			if(!arr[2].equals("Card") && !arr[2].equals("Other"))throw new BadConfigFormatException("Invalid Type of Room");
+			legend.put(arr[0].charAt(0), arr[1]); 
+		}
+		in.close();
+		
+	}
+	public void loadBoardConfig() throws BadConfigFormatException, FileNotFoundException {
+		
+		FileReader file;
+		
+		file = new FileReader(csvFile);
+		Scanner in = new Scanner(file);
+		String temp;
+		// Keeps track of which row we are on
+		int i = 1;
+		// Goes through each value and initializes the board array with locations and its character
+		temp = in.next();
+		String arr[] = temp.split(",");
+		numCols = arr.length;
+		while(in.hasNext()) {
+			
+			for(int j = 0; j < arr.length; j++) {
+				if(!legend.containsKey(arr[j].charAt(0))) throw new BadConfigFormatException("Board element not in legend");
+				board[i][j] = new BoardCell(i, j, arr[j]);
+			}
+			
+			temp = in.next();
+			arr = temp.split(",");
+			if(arr.length != numCols) throw new BadConfigFormatException("Incorrect number of Columns");
+			i++;
+		}
+		numRows = i;
+		in.close();
 	}
 }
