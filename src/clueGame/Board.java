@@ -163,8 +163,8 @@ public class Board {
 		while(in.hasNext()) {
 			temp = in.nextLine();
 			String arr[] = temp.split(", ");
-			//if(arr.length <3) throw new BadConfigFormatException();
-			//if(!arr[2].equals("Card") && !arr[2].equals("Other"))throw new BadConfigFormatException("Invalid Type of Room");
+			if(arr.length <3) throw new BadConfigFormatException();
+			if(!arr[2].equals("Card") && !arr[2].equals("Other"))throw new BadConfigFormatException("Invalid Type of Room");
 			legend.put(arr[0].charAt(0), arr[1]); 
 		}
 		in.close();
@@ -186,19 +186,19 @@ public class Board {
 		while(in.hasNext()) {
 			
 			for(int j = 0; j < arr.length; j++) {
-				//if(!legend.containsKey(arr[j].charAt(0))) throw new BadConfigFormatException("Board element not in legend");
+				if(!legend.containsKey(arr[j].charAt(0))) throw new BadConfigFormatException("Board element not in legend");
 				board[i][j] = new BoardCell(i, j, arr[j]);
 				System.out.println(board[i][j]);
 			}
 			
 			temp = in.next();
 			arr = temp.split(",");
-			//if(arr.length != numCols) throw new BadConfigFormatException("Incorrect number of Columns");
+			if(arr.length != numCols) throw new BadConfigFormatException("Incorrect number of Columns");
 			i++;
 		}
 		// Reads in the last row
 		for(int j = 0; j < arr.length; j++) {
-			//if(!legend.containsKey(arr[j].charAt(0))) throw new BadConfigFormatException("Board element not in legend");
+			if(!legend.containsKey(arr[j].charAt(0))) throw new BadConfigFormatException("Board element not in legend");
 			board[i][j] = new BoardCell(i, j, arr[j]);
 			System.out.println(board[i][j]);
 		}
