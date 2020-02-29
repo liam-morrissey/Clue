@@ -9,6 +9,12 @@ import java.util.Set;
 
 import java.util.Scanner;
 
+/**
+ * 
+ * @author Brandt Ross
+ * @author Liam Morrissey
+ *
+ */
 public class Board {
 	// Array that holds all the cells in the board
 	private BoardCell[][] board;
@@ -93,6 +99,12 @@ public class Board {
 		return adjacencies.get(cell);
 	}
 
+	
+	// Some tests require calcTargets to take in a boardcell and some take in 3 ints
+	public void calcTargets(int startI, int startJ, int pathLength) {
+		calcTargets(board[startI][startJ], pathLength);
+	}
+	
 	// Sets up for recursive call to find targets
 	public void calcTargets(BoardCell startCell, int pathLength) {
 		visited.add(startCell);
@@ -102,6 +114,8 @@ public class Board {
 	// Recursive function that finds targets
 	private void findAllTargets(BoardCell startCell, int pathLength) {
 		// Loops through adjacent cells
+		if(getAdjList(startCell) == null)
+			return;
 		for(BoardCell adjCell : getAdjList(startCell)) {
 			if(!visited.contains(adjCell)) {
 				visited.add(adjCell);
@@ -150,6 +164,7 @@ public class Board {
 	public int getNumColumns() {
 		return numCols;
 	}
+	
 	public void loadRoomConfig() throws BadConfigFormatException, FileNotFoundException{
 		
 		FileReader file;
@@ -170,6 +185,7 @@ public class Board {
 		in.close();
 		
 	}
+	
 	public void loadBoardConfig() throws BadConfigFormatException, FileNotFoundException {
 		
 		FileReader file;
@@ -188,7 +204,6 @@ public class Board {
 			for(int j = 0; j < arr.length; j++) {
 				if(!legend.containsKey(arr[j].charAt(0))) throw new BadConfigFormatException("Board element not in legend");
 				board[i][j] = new BoardCell(i, j, arr[j]);
-				System.out.println(board[i][j]);
 			}
 			
 			temp = in.next();
@@ -200,12 +215,16 @@ public class Board {
 		for(int j = 0; j < arr.length; j++) {
 			if(!legend.containsKey(arr[j].charAt(0))) throw new BadConfigFormatException("Board element not in legend");
 			board[i][j] = new BoardCell(i, j, arr[j]);
-			System.out.println(board[i][j]);
 		}
 		
 		//There was an off by one error with the number of rows
 		i++;
 		numRows = i;
 		in.close();
+	}
+	
+	public Set<BoardCell> getAdjList(int i, int j) {
+		// return adjacencies.get(board[i][j]);
+		return new HashSet<BoardCell>();
 	}
 }
