@@ -78,7 +78,7 @@ public class SpecificAdjTest {
 		assertTrue(testSet.contains(board.getCellAt(4, 15)));
 		
 		testSet = board.getAdjList(6, 17);
-		assertEquals(2, testSet.size());
+		assertEquals(3, testSet.size());
 		assertTrue(testSet.contains(board.getCellAt(6, 16)));
 		assertTrue(testSet.contains(board.getCellAt(6, 18)));
 		assertTrue(testSet.contains(board.getCellAt(5, 17)));
