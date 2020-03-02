@@ -69,28 +69,54 @@ public class Board {
 		for(int i = 0; i < numRows; i++) {
 			for(int j = 0; j < numCols; j++) {
 				tempAdj = new HashSet<BoardCell>();
-
-				// Check if the position above is valid
-				if(i > 0) {
-					tempAdj.add(board[i - 1][j]);
+				//If the boardcell is neither a doorway nor a walkway
+				if(!board[i][j].isDoorway() && !board[i][j].isWalkway())
+					adjacencies.put(board[i][j],tempAdj);
+				//If the board cell is a doorway, only add the boardcell in direction the door opens
+				else if(board[i][j].isDoorway()) {
+					switch(board[i][j].getDoorDirection()) {
+					case UP:
+						tempAdj.add(board[i][j+1]);
+						adjacencies.put(board[i][j],tempAdj);
+						break;
+					case DOWN:
+						tempAdj.add(board[i][j-1]);
+						adjacencies.put(board[i][j],tempAdj);
+						break;
+					case LEFT:
+						tempAdj.add(board[i-1][j]);
+						adjacencies.put(board[i][j],tempAdj);
+						break;
+					case RIGHT:
+						tempAdj.add(board[i+1][j]);
+						adjacencies.put(board[i][j],tempAdj);
+						break;
+					
+					}
 				}
-
-				// Check if the position below is valid
-				if(i < numRows - 1) {
-					tempAdj.add(board[i + 1][j]);
+				else {
+					// Check if the position above is valid
+					if(i > 0 && (board[i-1][j].isWalkway() || board[i-1][j].isDoorway())) {
+						tempAdj.add(board[i - 1][j]);
+					}
+	
+					// Check if the position below is valid
+					if(i < numRows - 1 && (board[i+1][j].isWalkway() || board[i+1][j].isDoorway())) {
+						tempAdj.add(board[i + 1][j]);
+					}
+	
+					// Check if the position to the left is valid
+					if(j > 0 && (board[i][j-1].isWalkway() || board[i][j-1].isDoorway())) {
+						tempAdj.add(board[i][j - 1]);
+					}
+	
+					// Check if the position to the right is valid
+					if(j < numCols - 1 && (board[i][j+1].isWalkway() || board[i][j+1].isDoorway())) {
+						tempAdj.add(board[i][j + 1]);
+					}
+	
+					adjacencies.put(board[i][j], tempAdj);
 				}
-
-				// Check if the position to the left is valid
-				if(j > 0) {
-					tempAdj.add(board[i][j - 1]);
-				}
-
-				// Check if the position to the right is valid
-				if(j < numCols - 1) {
-					tempAdj.add(board[i][j + 1]);
-				}
-
-				adjacencies.put(board[i][j], tempAdj);
 			}
 		}
 	}

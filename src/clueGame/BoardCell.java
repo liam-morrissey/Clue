@@ -48,6 +48,11 @@ public class BoardCell {
 	public boolean isDoorway() {
 		return (dir != DoorDirection.NONE);
 	}
+	
+	public boolean isWalkway() {
+		if(cellText.charAt(0)=='W')return true;
+		else return false;
+	}
 
 	public DoorDirection getDoorDirection() {
 		return dir;
