@@ -63,31 +63,33 @@ public class Board {
 	public void calcAdjacencies() {
 		// Holds the cells adjacent to the current cell
 		Set<BoardCell> tempAdj;
-
+		
 		// Loops through all board spaces
 		for(int i = 0; i < numRows; i++) {
 			for(int j = 0; j < numCols; j++) {
+				
 				tempAdj = new HashSet<BoardCell>();
 				//If the boardcell is neither a doorway nor a walkway
-				if(!board[i][j].isDoorway() && !board[i][j].isWalkway())
+				if(!board[i][j].isDoorway() && !board[i][j].isWalkway()) {
 					adjacencies.put(board[i][j],tempAdj);
+				}
 				//If the board cell is a doorway, only add the boardcell in direction the door opens
 				else if(board[i][j].isDoorway()) {
 					switch(board[i][j].getDoorDirection()) {
 					case UP:
-						tempAdj.add(board[i][j+1]);
-						adjacencies.put(board[i][j],tempAdj);
-						break;
-					case DOWN:
-						tempAdj.add(board[i][j-1]);
-						adjacencies.put(board[i][j],tempAdj);
-						break;
-					case LEFT:
 						tempAdj.add(board[i-1][j]);
 						adjacencies.put(board[i][j],tempAdj);
 						break;
-					case RIGHT:
+					case DOWN:
 						tempAdj.add(board[i+1][j]);
+						adjacencies.put(board[i][j],tempAdj);
+						break;
+					case LEFT:
+						tempAdj.add(board[i][j-1]);
+						adjacencies.put(board[i][j],tempAdj);
+						break;
+					case RIGHT:
+						tempAdj.add(board[i][j+1]);
 						adjacencies.put(board[i][j],tempAdj);
 						break;
 					
@@ -95,22 +97,22 @@ public class Board {
 				}
 				else {
 					// Check if the position above is valid
-					if(i > 0 && (board[i-1][j].isWalkway() || board[i-1][j].isDoorway())) {
+					if(i > 0 && (board[i-1][j].isWalkway() || board[i-1][j].getDoorDirection() == DoorDirection.DOWN)) {
 						tempAdj.add(board[i - 1][j]);
 					}
 	
 					// Check if the position below is valid
-					if(i < numRows - 1 && (board[i+1][j].isWalkway() || board[i+1][j].isDoorway())) {
+					if(i < numRows - 1 && (board[i+1][j].isWalkway() || board[i+1][j].getDoorDirection() == DoorDirection.UP)) {
 						tempAdj.add(board[i + 1][j]);
 					}
 	
 					// Check if the position to the left is valid
-					if(j > 0 && (board[i][j-1].isWalkway() || board[i][j-1].isDoorway())) {
+					if(j > 0 && (board[i][j-1].isWalkway() || board[i][j-1].getDoorDirection() == DoorDirection.RIGHT)) {
 						tempAdj.add(board[i][j - 1]);
 					}
 	
 					// Check if the position to the right is valid
-					if(j < numCols - 1 && (board[i][j+1].isWalkway() || board[i][j+1].isDoorway())) {
+					if(j < numCols - 1 && (board[i][j+1].isWalkway() || board[i][j+1].getDoorDirection() == DoorDirection.LEFT)) {
 						tempAdj.add(board[i][j + 1]);
 					}
 	
@@ -132,6 +134,8 @@ public class Board {
 	
 	// Sets up for recursive call to find targets
 	public void calcTargets(BoardCell startCell, int pathLength) {
+		//makes sure previous target selection is cleared
+		targets.clear();
 		visited.add(startCell);
 		findAllTargets(startCell, pathLength);
 	}
@@ -147,7 +151,9 @@ public class Board {
 				// Adds the adjacent cell to targets if the path length is 1 otherwise, recursively call find all targets with adjacent cells
 				if(pathLength == 1) {
 					targets.add(adjCell);
-				} else {
+				}else if(adjCell.isDoorway()){
+					targets.add(adjCell);
+				}else {
 					findAllTargets(adjCell, pathLength - 1);
 				}
 				visited.remove(adjCell);
@@ -250,7 +256,6 @@ public class Board {
 	}
 	
 	public Set<BoardCell> getAdjList(int i, int j) {
-		// return adjacencies.get(board[i][j]);
-		return new HashSet<BoardCell>();
+		return adjacencies.get(board[i][j]);
 	}
 }
