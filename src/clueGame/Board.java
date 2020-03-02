@@ -50,7 +50,6 @@ public class Board {
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
 		legend = new HashMap<Character, String>();
-		calcAdjacencies();
 	}
 	// this method returns the only Board
 	public static Board getInstance() {
@@ -173,6 +172,7 @@ public class Board {
 		try {
 			loadRoomConfig();
 			loadBoardConfig();
+			calcAdjacencies();
 		} catch (FileNotFoundException | BadConfigFormatException e) {
 			e.printStackTrace();
 		}
