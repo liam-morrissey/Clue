@@ -39,9 +39,9 @@ public class Board {
 	
 	// constructor is private to ensure only one can be created
 	private Board() {
-		numRows = MAX_BOARD_SIZE;
-		numCols = MAX_BOARD_SIZE;
-		board = new BoardCell[numRows][numCols];
+		//numRows = MAX_BOARD_SIZE;
+		//numCols = MAX_BOARD_SIZE;
+		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 
 		adjacencies = new HashMap<BoardCell, Set<BoardCell>>();
 		visited = new HashSet<BoardCell>();
@@ -205,14 +205,14 @@ public class Board {
 		
 		file = new FileReader(csvFile);
 		Scanner in = new Scanner(file);
-		String temp;
+		String currentLine;
 		file = new FileReader(legendFile);
 		in = new Scanner(file);
 		
 		// Loop through lines and add them to the legend
 		while(in.hasNext()) {
-			temp = in.nextLine();
-			String arr[] = temp.split(", ");
+			currentLine = in.nextLine();
+			String arr[] = currentLine.split(", ");
 			if(arr.length <3) throw new BadConfigFormatException();
 			if(!arr[2].equals("Card") && !arr[2].equals("Other"))throw new BadConfigFormatException("Invalid Type of Room");
 			legend.put(arr[0].charAt(0), arr[1]); 
