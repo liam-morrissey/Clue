@@ -67,30 +67,31 @@ public class Board {
 		// Loops through all board spaces
 		for(int i = 0; i < numRows; i++) {
 			for(int j = 0; j < numCols; j++) {
-				
+				BoardCell currentCell = board[i][j];
 				tempAdj = new HashSet<BoardCell>();
+				
 				//If the boardcell is neither a doorway nor a walkway
-				if(!board[i][j].isDoorway() && !board[i][j].isWalkway()) {
-					adjacencies.put(board[i][j],tempAdj);
+				if(!currentCell.isDoorway() && !currentCell.isWalkway()) {
+					adjacencies.put(currentCell,tempAdj);
 				}
 				//If the board cell is a doorway, only add the boardcell in direction the door opens
-				else if(board[i][j].isDoorway()) {
-					switch(board[i][j].getDoorDirection()) {
+				else if(currentCell.isDoorway()) {
+					switch(currentCell.getDoorDirection()) {
 					case UP:
 						tempAdj.add(board[i-1][j]);
-						adjacencies.put(board[i][j],tempAdj);
+						adjacencies.put(currentCell,tempAdj);
 						break;
 					case DOWN:
 						tempAdj.add(board[i+1][j]);
-						adjacencies.put(board[i][j],tempAdj);
+						adjacencies.put(currentCell,tempAdj);
 						break;
 					case LEFT:
 						tempAdj.add(board[i][j-1]);
-						adjacencies.put(board[i][j],tempAdj);
+						adjacencies.put(currentCell,tempAdj);
 						break;
 					case RIGHT:
 						tempAdj.add(board[i][j+1]);
-						adjacencies.put(board[i][j],tempAdj);
+						adjacencies.put(currentCell,tempAdj);
 						break;
 					
 					}
@@ -116,7 +117,7 @@ public class Board {
 						tempAdj.add(board[i][j + 1]);
 					}
 	
-					adjacencies.put(board[i][j], tempAdj);
+					adjacencies.put(currentCell, tempAdj);
 				}
 			}
 		}

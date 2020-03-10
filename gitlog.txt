@@ -1,0 +1,192 @@
+commit 36c86d9729caf4d8f3b4f1169cf493c577dcbd48
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Sun Mar 1 22:43:32 2020 -0700
+
+    One of the tests was wrong
+
+commit f5627eecf7ca13fad98bffd048e7968518bdfdcb
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Sun Mar 1 21:40:22 2020 -0700
+
+    update calcTargets
+
+commit 38a66dca3e15459e75c4e597f104e1603bd9337d
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Sun Mar 1 19:38:25 2020 -0700
+
+    Moved calcAdjacencies to initialization
+
+commit 78fa5da37e2056ddfdbfb9e4d57cc9eed45a0a79
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Sun Mar 1 19:34:33 2020 -0700
+
+    update adj calc
+
+commit a0fbacae220ebc0271ac8ded551f940fd21fc14b
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Fri Feb 28 20:21:58 2020 -0700
+
+    Created tests for movement
+
+commit 9409a697a554651751b2a0d5fc93558be58f905a
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Thu Feb 27 22:06:13 2020 -0700
+
+    I forgot I commented out the places where exceptions are thrown
+
+commit fbd6650a6d4fc63556c8985318f860771940ae95
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Thu Feb 27 22:01:40 2020 -0700
+
+    Corrected several off by one errors, but exception tests fail
+
+commit 73b7845c20a105123c0ca07baace53e6c8229bad
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Thu Feb 27 21:02:28 2020 -0700
+
+    ExceptionTests working
+
+commit 2eb6b8af84581027a08cbdd366844876d32c89f9
+Author: liam-morrissey <liam.morrissey.family@gmail.com>
+Date:   Thu Feb 27 12:10:49 2020 -0700
+
+    part 2: tests pass
+
+commit 2796de3a7858dceff521a0df5ede09a4ed77ef3f
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Thu Feb 27 10:49:31 2020 -0700
+
+    Removed line numbers from csv file
+
+commit 65e9b6357f8aa0282bbbdac655b0bb6dc7427760
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Wed Feb 26 18:19:32 2020 -0700
+
+    update the .txt
+
+commit 2171531a3f7de15b0f0e4a0193e1d528d0770de6
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Wed Feb 26 18:07:12 2020 -0700
+
+    All tests fail rather than throw errors
+
+commit 9f4690136f2d5992cd738750a6e2c82ec8c2ecc4
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Tue Feb 25 22:39:51 2020 -0700
+
+    One file wasn't saved before commit
+
+commit 2a6f438762b15feb0531722882e716cd7eb0d6d9
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Tue Feb 25 22:35:38 2020 -0700
+
+    Updated test file and added cell selection reasoning
+
+commit f7804d46b4f3ea1b49db82f25a3f1d425eef278f
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Tue Feb 25 22:26:17 2020 -0700
+
+    Added test files for board
+
+commit c0b6accc22c82ba7e538c3c6fe93dc5378d654e3
+Author: liam-morrissey <liam.morrissey.family@gmail.com>
+Date:   Tue Feb 25 12:13:19 2020 -0700
+
+    added all files
+
+commit abdf6dce0d73805c92622a450a5d86070ef64010
+Author: liam-morrissey <liam.morrissey.family@gmail.com>
+Date:   Tue Feb 25 11:43:55 2020 -0700
+
+    got project working again
+
+commit 61a8fd1be15445e9d6e9f895dedaafefc7c6b641
+Merge: d7e8158 f3e0e1b
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Mon Feb 24 10:16:36 2020 -0700
+
+    Merge branch 'pathTests' of https://github.com/liam-morrissey/Clue into pathTests
+
+commit d7e8158eebbb782195de51301a144ce0c5600ca4
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Mon Feb 24 10:16:02 2020 -0700
+
+    Code better fits coding standards
+
+commit f3e0e1ba820c0002686babfeb47b55bb6ba3446a
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Sun Feb 23 18:18:15 2020 -0700
+
+    added git log
+
+commit 4b45427ec5ca277b5ab77ab51c8f772ed96ce4a5
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Sun Feb 23 18:16:47 2020 -0700
+
+    Last two tests working
+
+commit dd07f7464a1f7c883dd1a51a2c41073d7ce6bb33
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Sat Feb 22 15:41:43 2020 -0700
+
+    added comments
+
+commit 30d5d44dc097be4f61c1a556ef331c520dacf532
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Sat Feb 22 15:37:43 2020 -0700
+
+    4/6 of the testTargets now work
+
+commit 2cec36c37d226d24e68d8f88d3074cbf79cf1d9c
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Fri Feb 21 19:17:47 2020 -0700
+
+    Fixed hash map, adjacency tests pass
+
+commit 6a968c4b6c8ed97108458a09684b12806dba9759
+Author: liam-morrissey <liam.morrissey.family@gmail.com>
+Date:   Fri Feb 21 18:04:43 2020 -0700
+
+    calcAdjacencies updated, need hash map fix
+
+commit 14ac95094ca9c8db5151920677d9380fbe1913d3
+Author: liam-morrissey <liam.morrissey.family@gmail.com>
+Date:   Fri Feb 21 17:13:09 2020 -0700
+
+    Brandt wrote tests bless up
+
+commit 8f6a8b652a052aca4f789b22ec7b80210269e080
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Fri Feb 21 16:40:57 2020 -0700
+
+    Hopeful fix
+
+commit 0cabc25f58df346a03e373c2a6aba34aba2a79e0
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Fri Feb 21 16:35:51 2020 -0700
+
+    Added bin folder
+
+commit eb7289fee8696c015783cc8df8c55463d412b205
+Author: Liam Morrissey <50638340+liam-morrissey@users.noreply.github.com>
+Date:   Fri Feb 21 16:29:24 2020 -0700
+
+    Update .gitignore
+
+commit b81f2d9964e0ed14c93c93583a35472eb3c050a2
+Author: liam-morrissey <liam.morrissey.family@gmail.com>
+Date:   Fri Feb 21 16:19:10 2020 -0700
+
+    add test cases
+
+commit 3aea528a76148cde85bcd80314c7606b64bc5c3e
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Thu Feb 20 12:11:08 2020 -0700
+
+    Initialized skeleton
+
+commit 8e429ebd6c86c8d10463f594fb6be154eaf1b7d5
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Thu Feb 20 11:51:41 2020 -0700
+
+    Initial commit
