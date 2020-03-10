@@ -41,7 +41,6 @@ public class Board {
 	private static Board theInstance = new Board();
 	// constructor is private to ensure only one can be created
 	private Board() {
-		super();
 		numRows = MAX_BOARD_SIZE;
 		numCols = MAX_BOARD_SIZE;
 		board = new BoardCell[numRows][numCols];
@@ -51,6 +50,7 @@ public class Board {
 		targets = new HashSet<BoardCell>();
 		legend = new HashMap<Character, String>();
 	}
+	
 	// this method returns the only Board
 	public static Board getInstance() {
 		return theInstance;
@@ -74,6 +74,7 @@ public class Board {
 				if(!currentCell.isDoorway() && !currentCell.isWalkway()) {
 					adjacencies.put(currentCell,tempAdj);
 				}
+				
 				//If the board cell is a doorway, only add the boardcell in direction the door opens
 				else if(currentCell.isDoorway()) {
 					switch(currentCell.getDoorDirection()) {
@@ -92,10 +93,10 @@ public class Board {
 					case RIGHT:
 						tempAdj.add(board[i][j+1]);
 						adjacencies.put(currentCell,tempAdj);
-						break;
-					
+						break;	
 					}
 				}
+				
 				else {
 					// Check if the position above is valid
 					if(i > 0 && (board[i-1][j].isWalkway() || board[i-1][j].getDoorDirection() == DoorDirection.DOWN)) {
@@ -144,11 +145,14 @@ public class Board {
 	// Recursive function that finds targets
 	private void findAllTargets(BoardCell startCell, int pathLength) {
 		// Loops through adjacent cells
-		if(getAdjList(startCell) == null)
+		if(getAdjList(startCell) == null) {
 			return;
+		}
+		
 		for(BoardCell adjCell : getAdjList(startCell)) {
 			if(!visited.contains(adjCell)) {
 				visited.add(adjCell);
+				
 				// Adds the adjacent cell to targets if the path length is 1 otherwise, recursively call find all targets with adjacent cells
 				if(pathLength == 1) {
 					targets.add(adjCell);
@@ -199,7 +203,6 @@ public class Board {
 	}
 	
 	public void loadRoomConfig() throws BadConfigFormatException, FileNotFoundException{
-		
 		FileReader file;
 		
 		file = new FileReader(csvFile);
@@ -207,6 +210,7 @@ public class Board {
 		String temp;
 		file = new FileReader(legendFile);
 		in = new Scanner(file);
+		
 		// Loop through lines and add them to the legend
 		while(in.hasNext()) {
 			temp = in.nextLine();
@@ -215,35 +219,37 @@ public class Board {
 			if(!arr[2].equals("Card") && !arr[2].equals("Other"))throw new BadConfigFormatException("Invalid Type of Room");
 			legend.put(arr[0].charAt(0), arr[1]); 
 		}
-		in.close();
 		
+		in.close();
 	}
 	
 	public void loadBoardConfig() throws BadConfigFormatException, FileNotFoundException {
-		
 		FileReader file;
 		
 		file = new FileReader(csvFile);
 		Scanner in = new Scanner(file);
-		String temp;
+		String currLine;
+		
 		// Keeps track of which row we are on
 		int i = 0;
+		
 		// Goes through each value and initializes the board array with locations and its character
-		temp = in.next();
-		String arr[] = temp.split(",");
+		currLine = in.next();
+		String arr[] = currLine.split(",");
 		numCols = arr.length;
+		
 		while(in.hasNext()) {
-			
 			for(int j = 0; j < arr.length; j++) {
 				if(!legend.containsKey(arr[j].charAt(0))) throw new BadConfigFormatException("Board element not in legend");
 				board[i][j] = new BoardCell(i, j, arr[j]);
 			}
 			
-			temp = in.next();
-			arr = temp.split(",");
+			currLine = in.next();
+			arr = currLine.split(",");
 			if(arr.length != numCols) throw new BadConfigFormatException("Incorrect number of Columns");
 			i++;
 		}
+		
 		// Reads in the last row
 		for(int j = 0; j < arr.length; j++) {
 			if(!legend.containsKey(arr[j].charAt(0))) throw new BadConfigFormatException("Board element not in legend");
