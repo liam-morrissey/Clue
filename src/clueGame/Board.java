@@ -38,22 +38,36 @@ public class Board {
 	private static Board theInstance = new Board();
 	
 	// constructor is private to ensure only one can be created
-	private Board() {
-		//numRows = MAX_BOARD_SIZE;
-		//numCols = MAX_BOARD_SIZE;
-		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+	private Board() {}
+	
+	// this method returns the only Board
+	public static Board getInstance() {
+		theInstance.initializeMemory();
+		return theInstance;
+	}
 
+	public void initialize() {
+		initializeMemory();
+		
+		try {
+			loadRoomConfig();
+			loadBoardConfig();
+			calcAdjacencies();
+		} catch (FileNotFoundException | BadConfigFormatException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	private void initializeMemory() {
+		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+		
 		adjacencies = new HashMap<BoardCell, Set<BoardCell>>();
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
 		legend = new HashMap<Character, String>();
 	}
 	
-	// this method returns the only Board
-	public static Board getInstance() {
-		return theInstance;
-	}
-
 	/*
 	 * Will go through every cell on the board and create a set of adjacent tiles
 	 * This set will be inserted into the map
@@ -175,17 +189,6 @@ public class Board {
 	public void setConfigFiles(String csvFile, String legendFile) {
 		this.csvFile = csvFile;
 		this.legendFile = legendFile;
-	}
-
-	public void initialize() {
-		try {
-			loadRoomConfig();
-			loadBoardConfig();
-			calcAdjacencies();
-		} catch (FileNotFoundException | BadConfigFormatException e) {
-			e.printStackTrace();
-		}
-		
 	}
 
 	public Map<Character, String> getLegend() {
