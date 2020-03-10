@@ -26,19 +26,17 @@ public class Board {
 	private Set<BoardCell> targets;
 	// Legend that says what each character is
 	private Map<Character, String> legend;
-	// Number of rows of the board
 	private int numRows;
-	// Number of columns of the board
 	private int numCols;
 	// Csv file for the board
 	private String csvFile;
-	// Lengend file for the board
 	private String legendFile;
 
 	private final int MAX_BOARD_SIZE = 50;
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
+	
 	// constructor is private to ensure only one can be created
 	private Board() {
 		numRows = MAX_BOARD_SIZE;
@@ -144,11 +142,11 @@ public class Board {
 
 	// Recursive function that finds targets
 	private void findAllTargets(BoardCell startCell, int pathLength) {
-		// Loops through adjacent cells
 		if(getAdjList(startCell) == null) {
 			return;
 		}
 		
+		// Loops through adjacent cells
 		for(BoardCell adjCell : getAdjList(startCell)) {
 			if(!visited.contains(adjCell)) {
 				visited.add(adjCell);

@@ -1,25 +1,23 @@
 package clueGame;
 
-/*
+/**
  * @author Brandt Ross
  * @author Liam Morrissey
  * 
  * Each instance is a cell that holds values for the cells row and column
  */
 public class BoardCell {
-	// Stores the row of the cell
 	private int row;
-	// Stores the column of the cell
 	private int column;
-	// Stores the text associated with the cell is a string because some have two chars
+	// Is a string because some have two chars
 	private String cellText;
-	// Stores the direction the door is facing
 	private DoorDirection dir;
 
 	public BoardCell(int row, int column, String cellText) {
 		this.row = row;
 		this.column = column;
 		this.cellText = cellText;
+		
 		if(cellText.length() == 2) {
 			if(cellText.charAt(1) == 'D') {
 				dir = DoorDirection.DOWN;
