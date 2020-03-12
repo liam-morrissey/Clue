@@ -16,19 +16,16 @@ import java.util.Scanner;
  *
  */
 public class Board {
-	// Array that holds all the cells in the board
+	// Initialization variables
+	
 	private BoardCell[][] board;
-	// Map that has a key of a cell and a value that is the set of all adjacent tiles to that cell
 	private Map<BoardCell, Set<BoardCell>> adjacencies;
-	// Set that contains all the cells that have been visited in the recursive call
 	private Set<BoardCell> visited;
-	// Set that contains the list of cells that can be reached
 	private Set<BoardCell> targets;
-	// Legend that says what each character is
 	private Map<Character, String> legend;
 	private int numRows;
 	private int numCols;
-	// Csv file for the board
+	
 	private String csvFile;
 	private String legendFile;
 
