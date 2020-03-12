@@ -48,7 +48,9 @@ public class BoardCell {
 	}
 	
 	public boolean isWalkway() {
-		if(cellText.charAt(0)=='W')return true;
+		if(cellText.charAt(0)=='W') {
+			return true;
+		}
 		return false;
 	}
 
