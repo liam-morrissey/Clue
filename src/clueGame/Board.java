@@ -28,6 +28,10 @@ public class Board {
 	
 	private String csvFile;
 	private String legendFile;
+	private String playerFile;
+	private String weaponFile;
+	
+	private Solution theAnswer;
 
 	private final int MAX_BOARD_SIZE = 50;
 
@@ -183,7 +187,7 @@ public class Board {
 		return board[i][j];
 	}
 
-	public void setConfigFiles(String csvFile, String legendFile) {
+	public void setConfigFiles(String csvFile, String legendFile, String playerFile, String weaponFile) {
 		this.csvFile = csvFile;
 		this.legendFile = legendFile;
 	}
@@ -199,6 +203,17 @@ public class Board {
 	public int getNumColumns() {
 		return numCols;
 	}
+	
+	//skeleton configs for failed tests
+	public void loadWeaponConfig() {
+		
+	}
+	
+	public void loadPlayerConfig() {
+		
+	}
+	
+	
 	
 	public void loadRoomConfig() throws BadConfigFormatException, FileNotFoundException{
 		FileReader file;
@@ -262,5 +277,15 @@ public class Board {
 	
 	public Set<BoardCell> getAdjList(int i, int j) {
 		return adjacencies.get(board[i][j]);
+	}
+	
+	public void selectAnswer() {}
+
+	public Card handleSuggestion() {
+		return null;
+	}
+
+	public boolean checkAccusation(Solution accusation) {
+		return null;
 	}
 }
