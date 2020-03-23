@@ -32,6 +32,8 @@ public class Board {
 	private String weaponFile;
 	
 	private Solution theAnswer;
+	
+	private Player[] players = new Player[6];
 
 	private final int MAX_BOARD_SIZE = 50;
 
@@ -202,6 +204,11 @@ public class Board {
 
 	public int getNumColumns() {
 		return numCols;
+	}
+	
+	public Player getPlayer(int i) {
+		if(i<players.length && i>=0) return players[i];
+		else return null;
 	}
 	
 	//skeleton configs for failed tests
