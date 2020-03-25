@@ -1,6 +1,8 @@
 package clueGame;
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.Field;
 //Authors: Liam Morrissey and Brandt Ross
 import java.util.HashMap;
 import java.util.HashSet;
@@ -56,6 +58,7 @@ public class Board {
 			loadRoomConfig();
 			loadBoardConfig();
 			calcAdjacencies();
+			loadPlayerConfig();
 		} catch (FileNotFoundException | BadConfigFormatException e) {
 			e.printStackTrace();
 		}
@@ -189,9 +192,10 @@ public class Board {
 		return board[i][j];
 	}
 
-	public void setConfigFiles(String csvFile, String legendFile, String playerFile, String weaponFile) {
+	public void setConfigFiles(String csvFile, String legendFile, String playerFile) {
 		this.csvFile = csvFile;
 		this.legendFile = legendFile;
+		this.playerFile = playerFile;
 	}
 
 	public Map<Character, String> getLegend() {
@@ -216,8 +220,39 @@ public class Board {
 		
 	}
 	
-	public void loadPlayerConfig() {
+	/**
+	 * 
+	 * @throws BadConfigFormatException
+	 * @throws FileNotFoundException
+	 * 
+	 * Format is: Name, Color, row, column, Human or Computer
+	 */
+	public void loadPlayerConfig() throws BadConfigFormatException, FileNotFoundException{
+		FileReader file;
 		
+		
+		String currentLine;
+		file = new FileReader(playerFile);
+		Scanner in = new Scanner(file);
+		
+		// Loop through lines and add them to the array
+		int i=0;
+		while(in.hasNext()) {
+			currentLine = in.nextLine();
+			String arr[] = currentLine.split(",");
+			String name = arr[0].trim();
+			Color color = convertColor(arr[1]);
+			//Add error catching for out of bounds later
+			BoardCell boardCell = getCellAt(Integer.parseInt(arr[2].trim()),Integer.parseInt(arr[3].trim()));
+			if(arr[4].trim().equalsIgnoreCase("Computer"))
+			players[i] = new ComputerPlayer(name,color, boardCell);
+			else if (arr[4].trim().equalsIgnoreCase("Human"))
+			players[i] = new HumanPlayer(name,color, boardCell);
+			else throw new BadConfigFormatException("Neither Computer nor Human Player");
+			i++;
+		}
+		
+		in.close();
 	}
 	
 	
@@ -225,11 +260,10 @@ public class Board {
 	public void loadRoomConfig() throws BadConfigFormatException, FileNotFoundException{
 		FileReader file;
 		
-		file = new FileReader(csvFile);
-		Scanner in = new Scanner(file);
+		
 		String currentLine;
 		file = new FileReader(legendFile);
-		in = new Scanner(file);
+		Scanner in = new Scanner(file);
 		
 		// Loop through lines and add them to the legend
 		while(in.hasNext()) {
@@ -293,6 +327,20 @@ public class Board {
 	}
 
 	public boolean checkAccusation(Solution accusation) {
-		return null;
+		return false;
 	}
+	
+	//color converter from stack overflow
+	public Color convertColor(String strColor) {
+		 Color color;
+		 try {
+		 // We can use reflection to convert the string to a color
+		 Field field = Class.forName("java.awt.Color").getField(strColor.trim());
+		 color = (Color)field.get(null);
+		 } catch (Exception e) {
+		 color = null; // Not defined
+		 }
+		 return color;
+		}
+	
 }

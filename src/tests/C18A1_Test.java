@@ -10,10 +10,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class C18A1_Test {
-	Board board;
+	static Board board;
 	@BeforeClass
-	public void setup() {
+	public static void setup() {
 		board = Board.getInstance();
+		board.setConfigFiles("clueBoard.csv", "roomLegend.txt", "player.txt");
+		board.initialize();
 	}
 	
 	
@@ -29,7 +31,7 @@ public class C18A1_Test {
 	public void testLoadPlayer3() {
 		assertEquals(board.getPlayer(2).getName(), "Mr. White");
 		assertEquals(board.getPlayer(2).getColor(), Color.white);
-		assertEquals(board.getPlayer(2).getPlayerType(), "Player");
+		assertEquals(board.getPlayer(2).getPlayerType(), "Human");
 		assertEquals(board.getPlayer(2).getLocation(), board.getCellAt(3,4 ));
 	}
 	@Test

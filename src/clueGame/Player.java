@@ -16,11 +16,17 @@ private BoardCell location;
 private Color color;
 private Set<Card> seenCards;
 
+public Player(String name, Color color, BoardCell boardCell) {
+	this.playerName = name;
+	this.location = boardCell;
+	this.color = color;
+}
+
 //setters and getters
-public String getPlayerName() {
+public String getName() {
 	return playerName;
 }
-public void setPlayerName(String playerName) {
+public void setName(String playerName) {
 	this.playerName = playerName;
 }
 public BoardCell getLocation() {
@@ -36,11 +42,16 @@ public void setColor(Color color) {
 	this.color = color;
 }
 
+public String getPlayerType() {
+	return "Player";
+};
+
 
 //disprove function
 public Card diproveSuggestion(Solution suggestion) {
 	return null;
 }
+
 
 
 
