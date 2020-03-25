@@ -19,4 +19,7 @@ public class Card {
 		return false;
 	}
 	
+	public String toString() {
+		return this.cardName + " " + this.type;
+	}
 }

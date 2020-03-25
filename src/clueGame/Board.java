@@ -226,7 +226,14 @@ public class Board {
 	}
 	
 	public boolean inDeck(Card in) {
-		return deck.contains(in);
+		boolean contain = false;
+		
+		for(Card i : deck) {
+			if(i.toString().equals(in.toString()))
+				contain = true;
+		}
+		
+		return contain;
 	}
 	
 	/**
@@ -281,6 +288,7 @@ public class Board {
 			else if (arr[4].trim().equalsIgnoreCase("Human"))
 			players[i] = new HumanPlayer(name,color, boardCell);
 			else throw new BadConfigFormatException("Neither Computer nor Human Player");
+			deck.add(new Card(name, CardType.PERSON));
 			i++;
 		}
 		
@@ -303,6 +311,9 @@ public class Board {
 			String arr[] = currentLine.split(", ");
 			if(arr.length <3) throw new BadConfigFormatException();
 			if(!arr[2].equals("Card") && !arr[2].equals("Other"))throw new BadConfigFormatException("Invalid Type of Room");
+			if(arr[2].equals("Card")) {
+				deck.add(new Card(arr[1], CardType.ROOM));
+			}
 			legend.put(arr[0].charAt(0), arr[1]); 
 		}
 		
