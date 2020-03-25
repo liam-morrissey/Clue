@@ -44,16 +44,18 @@ public class Player {
 	
 	public String getPlayerType() {
 		return "Player";
-	};
+	}
 	
+	public Set<Card> showCards() {
+		return seenCards;
+	}
+	
+	public void addToSeen(Card delt) {
+		seenCards.add(delt);
+	}
 	
 	//disprove function
 	public Card diproveSuggestion(Solution suggestion) {
 		return null;
 	}
-
-
-
-
-
 }

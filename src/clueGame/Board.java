@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collections;
 //Authors: Liam Morrissey and Brandt Ross
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,7 +29,7 @@ public class Board {
 	private Map<BoardCell, Set<BoardCell>> adjacencies;
 	private Set<BoardCell> visited;
 	private Set<BoardCell> targets;
-	private Set<Card> deck;
+	private ArrayList<Card> deck;
 	private Map<Character, String> legend;
 	private int numRows;
 	private int numCols;
@@ -75,7 +77,7 @@ public class Board {
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
 		legend = new HashMap<Character, String>();
-		deck = new HashSet<Card>();
+		deck = new ArrayList<Card>();
 	}
 	
 	/*
@@ -295,8 +297,6 @@ public class Board {
 		in.close();
 	}
 	
-	
-	
 	public void loadRoomConfig() throws BadConfigFormatException, FileNotFoundException{
 		FileReader file;
 		
@@ -386,4 +386,18 @@ public class Board {
 		 return color;
 		}
 	
+	/**
+	 * Shuffles the deck and then deals it to the players
+	 */
+	/*private void dealDeck() {
+		Collections.shuffle(deck);
+		
+		int dealTo = 0;
+		for(Card i : deck) {
+			if(dealTo == NUM_PLAYERS)
+				dealTo = 0;
+			players[dealTo].addToSeen(i);
+			dealTo++;
+		}
+	}*/
 }

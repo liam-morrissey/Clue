@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.awt.Color;
+import java.util.Set;
 
 import clueGame.Board;
 import clueGame.Card;
@@ -65,4 +66,19 @@ public class C18A1_Test {
 	}
 	
 	//Test dealing the deck
+	@Test
+	public void testDeal() {
+		Set<Card> playerOneHand = board.getPlayer(0).showCards();
+		Set<Card> playerThreeHand = board.getPlayer(2).showCards();
+		Set<Card> playerSixHand = board.getPlayer(5).showCards();
+		assertEquals(playerOneHand.size(), 5);
+		assertEquals(playerThreeHand.size(), 4);
+		assertEquals(playerSixHand.size(), 4);
+		
+		//Make sure that none of the cards in player one's hand are in player three or six's hands
+		for(Card i : playerOneHand) {
+			assertTrue(!playerThreeHand.contains(i));
+			assertTrue(!playerSixHand.contains(i));
+		}
+	}
 }
