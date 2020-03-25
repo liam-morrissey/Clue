@@ -62,6 +62,7 @@ public class Board {
 			loadBoardConfig();
 			calcAdjacencies();
 			loadPlayerConfig();
+			loadWeaponConfig();
 		} catch (FileNotFoundException | BadConfigFormatException e) {
 			e.printStackTrace();
 		}
@@ -232,7 +233,7 @@ public class Board {
 	 * 
 	 * Each line of the config file contains a weapon
 	 */
-	/*public void loadWeaponConfig() throws BadConfigFormatException, FileNotFoundException {
+	public void loadWeaponConfig() throws BadConfigFormatException, FileNotFoundException {
 		FileReader file;
 		
 		String currentLine;
@@ -246,7 +247,7 @@ public class Board {
 			weapons[i] = currentLine;
 			i++;
 		}
-	}*/
+	}
 	
 	/**
 	 * 
