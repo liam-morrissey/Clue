@@ -23,7 +23,7 @@ public class SpecificAdjTest {
 		// Get the only instance of board
 		board = Board.getInstance();
 		// Set the config file names
-		board.setConfigFiles("clueBoard.csv", "roomLegend.txt", "");		
+		board.setConfigFiles("clueBoard.csv", "roomLegend.txt", "", "");		
 		// Load the config files
 		board.initialize();
 	}

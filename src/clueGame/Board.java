@@ -66,7 +66,6 @@ public class Board {
 		} catch (FileNotFoundException | BadConfigFormatException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	private void initializeMemory() {
@@ -226,6 +225,10 @@ public class Board {
 		return null;
 	}
 	
+	public boolean inDeck(Card in) {
+		return deck.contains(in);
+	}
+	
 	/**
 	 * 
 	 * @throws BadConfigFormatException
@@ -245,6 +248,7 @@ public class Board {
 			if(i == NUM_WEAPONS) throw new BadConfigFormatException("Too many weapons");
 			currentLine = in.nextLine();
 			weapons[i] = currentLine;
+			deck.add(new Card(currentLine, CardType.WEAPON));
 			i++;
 		}
 	}

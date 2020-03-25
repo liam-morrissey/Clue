@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.awt.Color;
 
 import clueGame.Board;
+import clueGame.Card;
+import clueGame.CardType;
 import clueGame.Player;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -49,6 +51,17 @@ public class C18A1_Test {
 		assertEquals(board.getWeapon(0), "Candlestick");
 		assertEquals(board.getWeapon(3), "Lead Pipe");
 		assertEquals(board.getWeapon(5), "Wrench");
+	}
+	
+	//Test deck creation
+	@Test
+	public void testDeck() {
+		assertTrue(board.inDeck(new Card("Candlestick", CardType.WEAPON)));
+		assertTrue(board.inDeck(new Card("Wrench", CardType.WEAPON)));
+		assertTrue(board.inDeck(new Card("Mr. White", CardType.PERSON)));
+		assertTrue(board.inDeck(new Card("Mrs. Scarlet", CardType.PERSON)));
+		assertTrue(board.inDeck(new Card("Dinning Room", CardType.ROOM)));
+		assertTrue(board.inDeck(new Card("Bedroom", CardType.ROOM)));
 	}
 	
 	//Test dealing the deck
