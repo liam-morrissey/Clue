@@ -19,11 +19,15 @@ import java.util.Scanner;
  */
 public class Board {
 	// Initialization variables
+	public final int MAX_BOARD_SIZE = 50;
+	public final int NUM_PLAYERS = 6;
+	public final int NUM_WEAPONS = 6;
 	
 	private BoardCell[][] board;
 	private Map<BoardCell, Set<BoardCell>> adjacencies;
 	private Set<BoardCell> visited;
 	private Set<BoardCell> targets;
+	private Set<Card> deck;
 	private Map<Character, String> legend;
 	private int numRows;
 	private int numCols;
@@ -35,9 +39,8 @@ public class Board {
 	
 	private Solution theAnswer;
 	
-	private Player[] players = new Player[6];
-
-	private final int MAX_BOARD_SIZE = 50;
+	private Player[] players = new Player[NUM_PLAYERS];
+	private String[] weapons = new String[NUM_WEAPONS];
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
@@ -72,6 +75,7 @@ public class Board {
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
 		legend = new HashMap<Character, String>();
+		deck = new HashSet<Card>();
 	}
 	
 	/*
@@ -192,10 +196,11 @@ public class Board {
 		return board[i][j];
 	}
 
-	public void setConfigFiles(String csvFile, String legendFile, String playerFile) {
+	public void setConfigFiles(String csvFile, String legendFile, String playerFile, String weaponFile) {
 		this.csvFile = csvFile;
 		this.legendFile = legendFile;
 		this.playerFile = playerFile;
+		this.weaponFile = weaponFile;
 	}
 
 	public Map<Character, String> getLegend() {
@@ -215,10 +220,33 @@ public class Board {
 		else return null;
 	}
 	
-	//skeleton configs for failed tests
-	public void loadWeaponConfig() {
-		
+	public String getWeapon(int i) {
+		if(i < weapons.length && i >= 0) return weapons[i];
+		return null;
 	}
+	
+	/**
+	 * 
+	 * @throws BadConfigFormatException
+	 * @throws FileNotFoundException
+	 * 
+	 * Each line of the config file contains a weapon
+	 */
+	/*public void loadWeaponConfig() throws BadConfigFormatException, FileNotFoundException {
+		FileReader file;
+		
+		String currentLine;
+		file = new FileReader(weaponFile);
+		Scanner in = new Scanner(file);
+		
+		int i = 0;
+		while(in.hasNext()) {
+			if(i == NUM_WEAPONS) throw new BadConfigFormatException("Too many weapons");
+			currentLine = in.nextLine();
+			weapons[i] = currentLine;
+			i++;
+		}
+	}*/
 	
 	/**
 	 * 
@@ -227,9 +255,8 @@ public class Board {
 	 * 
 	 * Format is: Name, Color, row, column, Human or Computer
 	 */
-	public void loadPlayerConfig() throws BadConfigFormatException, FileNotFoundException{
+	public void loadPlayerConfig() throws BadConfigFormatException, FileNotFoundException {
 		FileReader file;
-		
 		
 		String currentLine;
 		file = new FileReader(playerFile);

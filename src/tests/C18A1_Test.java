@@ -14,7 +14,7 @@ public class C18A1_Test {
 	@BeforeClass
 	public static void setup() {
 		board = Board.getInstance();
-		board.setConfigFiles("clueBoard.csv", "roomLegend.txt", "player.txt");
+		board.setConfigFiles("clueBoard.csv", "roomLegend.txt", "player.txt", "weapons.txt");
 		board.initialize();
 	}
 	
@@ -43,8 +43,13 @@ public class C18A1_Test {
 	
 	}
 	
+	//Test loadWeaponConfig
+	@Test
+	public void testLoadWeapons() {
+		assertEquals(board.getWeapon(0), "Candlestick");
+		assertEquals(board.getWeapon(3), "Lead Pipe");
+		assertEquals(board.getWeapon(5), "Wrench");
+	}
 	
-	//Test Loading the Deck
-	
-
+	//Test dealing the deck
 }
