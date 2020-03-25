@@ -68,6 +68,8 @@ public class Board {
 		} catch (FileNotFoundException | BadConfigFormatException e) {
 			e.printStackTrace();
 		}
+		
+		dealDeck();
 	}
 
 	private void initializeMemory() {
@@ -389,7 +391,7 @@ public class Board {
 	/**
 	 * Shuffles the deck and then deals it to the players
 	 */
-	/*private void dealDeck() {
+	private void dealDeck() {
 		Collections.shuffle(deck);
 		
 		int dealTo = 0;
@@ -399,5 +401,5 @@ public class Board {
 			players[dealTo].addToSeen(i);
 			dealTo++;
 		}
-	}*/
+	}
 }

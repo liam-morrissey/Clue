@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.util.HashSet;
 import java.util.Set;
 /**
  * 
@@ -20,6 +21,7 @@ public class Player {
 		this.playerName = name;
 		this.location = boardCell;
 		this.color = color;
+		seenCards = new HashSet<Card>();
 	}
 
 	//setters and getters
