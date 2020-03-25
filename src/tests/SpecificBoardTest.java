@@ -30,7 +30,7 @@ public class SpecificBoardTest {
 	@BeforeClass
 	public static void setUp() {
 		board = Board.getInstance();
-		board.setConfigFiles("clueBoard.csv", "roomLegend.txt");
+		board.setConfigFiles("clueBoard.csv", "roomLegend.txt", "");
 		board.initialize();
 	}
 	
