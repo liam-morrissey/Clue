@@ -1,3 +1,244 @@
+commit 170eb4e19e260c32cdd1fd9d22edc3b6377d3da7
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Fri Mar 27 19:13:37 2020 -0500
+
+    reimplement the config setup for test
+
+commit ccce48c7df4e77d07aa8b4024111e3505836c352
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Wed Mar 25 14:19:56 2020 -0500
+
+    Fixed previous tests that were failing
+
+commit a72aa3fa484fab9766b36712356df3b8596fe073
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Wed Mar 25 14:18:12 2020 -0500
+
+    Passing test for deal
+
+commit b76308532aefb74ed7c8738498022874823cfaa0
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Wed Mar 25 14:13:27 2020 -0500
+
+    Failing test for deal
+
+commit cc7b93157944e92d2b0d43f0767ff4064520922e
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Wed Mar 25 13:48:25 2020 -0500
+
+    Passing test for deck creation
+
+commit d4f0513037e45e28f456233aaeeac27565eb91b9
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Wed Mar 25 13:40:55 2020 -0500
+
+    Failing test for deck creation
+
+commit b047464b904678b0862f4d5874d74ee98de0b106
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Wed Mar 25 13:33:05 2020 -0500
+
+    Passing test for weapons
+
+commit 255044cb5669553ee742083cbbe1aa70340af69f
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Wed Mar 25 13:31:45 2020 -0500
+
+    Failing tests for weapons
+
+commit 49d1b0d876c21245035470591af90b28ad34b36d
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Wed Mar 25 12:16:18 2020 -0500
+
+    Made previous tests pass again
+
+commit 6b93cee11a6d37b518060fe860cc6918ce797e13
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Tue Mar 24 20:57:59 2020 -0500
+
+    passing loadPlayer tests
+
+commit 7da736f5e9612bc8566376577cc8a8caa59a0716
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Mon Mar 23 17:36:34 2020 -0500
+
+    Tests for loadPlayerConfig
+
+commit 31f31c93aa357f6b34cf44509948b257c5e72203
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Mon Mar 23 14:16:46 2020 -0500
+
+    Set up skeleton classes for TDD
+
+commit be16746ecf6e210f681e49d7f987b82d8f87845b
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Thu Mar 12 09:00:18 2020 -0600
+
+    clean up if-statements
+
+commit a755bdeb6621ec95ca34c81719c797f691d878ba
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Thu Mar 12 08:52:36 2020 -0600
+
+    cleaned up comments
+
+commit 8cb6b1f270a7cfd0e9714f8037787c7cde207ab7
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Thu Mar 12 08:48:57 2020 -0600
+
+    added doc comments
+
+commit e19cdd37a1905aead12d788347c1d4ffcf38480e
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Tue Mar 10 14:16:29 2020 -0600
+
+    Made the code better follow the singleton pattern
+
+commit 4da2a8e44f979e58bc5e9960612e7b6ef05e4aeb
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Tue Mar 10 13:58:27 2020 -0600
+
+    Replaced redundant variable assignment with constants
+
+commit 38ca2a5162ca76ff68c22615c4b4bd18f9ce3e84
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Tue Mar 10 13:54:36 2020 -0600
+
+    Got rid of redundant comments
+
+commit 1b3b3f19768b8405ab38190813a7c316f5b349e6
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Tue Mar 10 13:50:04 2020 -0600
+
+    Changed line spacing to make the code more readable
+
+commit 84f6d9dd2434abadb0fc9dad8293a032050a9177
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Tue Mar 10 13:41:46 2020 -0600
+
+    Extracted board[i][j] to a variable
+
+commit 36c86d9729caf4d8f3b4f1169cf493c577dcbd48
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Sun Mar 1 22:43:32 2020 -0700
+
+    One of the tests was wrong
+
+commit f5627eecf7ca13fad98bffd048e7968518bdfdcb
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Sun Mar 1 21:40:22 2020 -0700
+
+    update calcTargets
+
+commit 38a66dca3e15459e75c4e597f104e1603bd9337d
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Sun Mar 1 19:38:25 2020 -0700
+
+    Moved calcAdjacencies to initialization
+
+commit 78fa5da37e2056ddfdbfb9e4d57cc9eed45a0a79
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Sun Mar 1 19:34:33 2020 -0700
+
+    update adj calc
+
+commit a0fbacae220ebc0271ac8ded551f940fd21fc14b
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Fri Feb 28 20:21:58 2020 -0700
+
+    Created tests for movement
+
+commit 9409a697a554651751b2a0d5fc93558be58f905a
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Thu Feb 27 22:06:13 2020 -0700
+
+    I forgot I commented out the places where exceptions are thrown
+
+commit fbd6650a6d4fc63556c8985318f860771940ae95
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Thu Feb 27 22:01:40 2020 -0700
+
+    Corrected several off by one errors, but exception tests fail
+
+commit 73b7845c20a105123c0ca07baace53e6c8229bad
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Thu Feb 27 21:02:28 2020 -0700
+
+    ExceptionTests working
+
+commit 2eb6b8af84581027a08cbdd366844876d32c89f9
+Author: liam-morrissey <liam.morrissey.family@gmail.com>
+Date:   Thu Feb 27 12:10:49 2020 -0700
+
+    part 2: tests pass
+
+commit 2796de3a7858dceff521a0df5ede09a4ed77ef3f
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Thu Feb 27 10:49:31 2020 -0700
+
+    Removed line numbers from csv file
+
+commit 65e9b6357f8aa0282bbbdac655b0bb6dc7427760
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Wed Feb 26 18:19:32 2020 -0700
+
+    update the .txt
+
+commit 2171531a3f7de15b0f0e4a0193e1d528d0770de6
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Wed Feb 26 18:07:12 2020 -0700
+
+    All tests fail rather than throw errors
+
+commit 9f4690136f2d5992cd738750a6e2c82ec8c2ecc4
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Tue Feb 25 22:39:51 2020 -0700
+
+    One file wasn't saved before commit
+
+commit 2a6f438762b15feb0531722882e716cd7eb0d6d9
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Tue Feb 25 22:35:38 2020 -0700
+
+    Updated test file and added cell selection reasoning
+
+commit f7804d46b4f3ea1b49db82f25a3f1d425eef278f
+Author: brandtross <bross@mymails.mines.edu>
+Date:   Tue Feb 25 22:26:17 2020 -0700
+
+    Added test files for board
+
+commit c0b6accc22c82ba7e538c3c6fe93dc5378d654e3
+Author: liam-morrissey <liam.morrissey.family@gmail.com>
+Date:   Tue Feb 25 12:13:19 2020 -0700
+
+    added all files
+
+commit abdf6dce0d73805c92622a450a5d86070ef64010
+Author: liam-morrissey <liam.morrissey.family@gmail.com>
+Date:   Tue Feb 25 11:43:55 2020 -0700
+
+    got project working again
+
+commit 61a8fd1be15445e9d6e9f895dedaafefc7c6b641
+Merge: d7e8158 f3e0e1b
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Mon Feb 24 10:16:36 2020 -0700
+
+    Merge branch 'pathTests' of https://github.com/liam-morrissey/Clue into pathTests
+
+commit d7e8158eebbb782195de51301a144ce0c5600ca4
+Author: Brandt Ross <bross@mymail.mines.edu>
+Date:   Mon Feb 24 10:16:02 2020 -0700
+
+    Code better fits coding standards
+
+commit f3e0e1ba820c0002686babfeb47b55bb6ba3446a
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Sun Feb 23 18:18:15 2020 -0700
+
+    added git log
+
 commit 4b45427ec5ca277b5ab77ab51c8f772ed96ce4a5
 Author: Liam Morrissey <liam.morrissey.family@gmail.com>
 Date:   Sun Feb 23 18:16:47 2020 -0700
