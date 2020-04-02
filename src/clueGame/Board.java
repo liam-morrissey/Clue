@@ -386,16 +386,36 @@ public class Board {
 		 color = null; // Not defined
 		 }
 		 return color;
-		}
+	}
+	
+	public Solution getSolution() {
+		return theAnswer;
+	}
 	
 	/**
 	 * Shuffles the deck and then deals it to the players
 	 */
 	private void dealDeck() {
 		Collections.shuffle(deck);
+		theAnswer = new Solution();
 		
 		int dealTo = 0;
 		for(Card i : deck) {
+			if(theAnswer.getPerson() == null && i.getType() == CardType.PERSON) {
+				theAnswer.setPerson(i);
+				continue;
+			} 
+			
+			if(theAnswer.getRoom() == null && i.getType() == CardType.ROOM) {
+				theAnswer.setRoom(i);
+				continue;
+			}
+			
+			if(theAnswer.getWeapon() == null && i.getType() == CardType.WEAPON) {
+				theAnswer.setWeapon(i);
+				continue;
+			}
+			
 			if(dealTo == NUM_PLAYERS)
 				dealTo = 0;
 			players[dealTo].addToSeen(i);

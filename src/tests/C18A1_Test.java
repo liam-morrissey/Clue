@@ -9,6 +9,8 @@ import clueGame.Board;
 import clueGame.Card;
 import clueGame.CardType;
 import clueGame.Player;
+import clueGame.Solution;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -71,9 +73,15 @@ public class C18A1_Test {
 		Set<Card> playerOneHand = board.getPlayer(0).showCards();
 		Set<Card> playerThreeHand = board.getPlayer(2).showCards();
 		Set<Card> playerSixHand = board.getPlayer(5).showCards();
-		assertEquals(playerOneHand.size(), 4);
-		assertEquals(playerThreeHand.size(), 4);
+		assertEquals(playerOneHand.size(), 3);
+		assertEquals(playerThreeHand.size(), 3);
 		assertEquals(playerSixHand.size(), 3);
+		
+		// Test solution is not empty
+		Solution ans = board.getSolution();
+		assertTrue(ans.getPerson() != null);
+		assertTrue(ans.getWeapon() != null);
+		assertTrue(ans.getRoom() != null);
 		
 		//Make sure that none of the cards in player one's hand are in player three or six's hands
 		for(Card i : playerOneHand) {
