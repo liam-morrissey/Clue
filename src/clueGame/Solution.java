@@ -46,4 +46,8 @@ public class Solution {
 	public void setWeapon(Card w) {
 		weapon = w;
 	}
+	
+	public String toString() {
+		return "Person: " + person + " Room: " + room + " Weapon: " + weapon;
+	}
 }

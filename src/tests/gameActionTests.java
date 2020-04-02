@@ -35,9 +35,9 @@ public class gameActionTests {
 		Solution wrongRoom = new Solution(answer.getPerson(), new Card("", CardType.ROOM), answer.getWeapon());
 		
 		assertTrue(board.checkAccusation(correct));
-		assertTrue(board.checkAccusation(wrongPerson));
-		assertTrue(board.checkAccusation(wrongWeapon));
-		assertTrue(board.checkAccusation(wrongRoom));
+		assertTrue(!board.checkAccusation(wrongPerson));
+		assertTrue(!board.checkAccusation(wrongWeapon));
+		assertTrue(!board.checkAccusation(wrongRoom));
 	}
 	
 	@Test

@@ -373,8 +373,7 @@ public class Board {
 	}
 
 	public boolean checkAccusation(Solution accusation) {
-		return theAnswer == accusation;
-		//return theAnswer == accusation && theAnswer == accusation && theAnswer == accusation;
+		return theAnswer.getPerson() == accusation.getPerson() && theAnswer.getRoom() == accusation.getRoom() && theAnswer.getWeapon() == accusation.getWeapon();
 	}
 	
 	//color converter from stack overflow
