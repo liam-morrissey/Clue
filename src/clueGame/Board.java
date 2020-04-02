@@ -20,10 +20,11 @@ import java.util.Scanner;
  *
  */
 public class Board {
+	private static final int NUM_WEAPONS = 6;
+	private static final int NUM_PLAYERS = 6;
+
 	// Initialization variables
 	public final int MAX_BOARD_SIZE = 50;
-	public final int NUM_PLAYERS = 6;
-	public final int NUM_WEAPONS = 6;
 	
 	private BoardCell[][] board;
 	private Map<BoardCell, Set<BoardCell>> adjacencies;
@@ -41,8 +42,8 @@ public class Board {
 	
 	private Solution theAnswer;
 	
-	private Player[] players = new Player[NUM_PLAYERS];
-	private String[] weapons = new String[NUM_WEAPONS];
+	private ArrayList<String> weapons = new ArrayList<String>();
+	private ArrayList<Player> players = new ArrayList<Player>();
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
@@ -220,12 +221,12 @@ public class Board {
 	}
 	
 	public Player getPlayer(int i) {
-		if(i<players.length && i>=0) return players[i];
+		if(i<players.size() && i>=0) return players.get(i);
 		else return null;
 	}
 	
 	public String getWeapon(int i) {
-		if(i < weapons.length && i >= 0) return weapons[i];
+		if(i < weapons.size() && i >= 0) return weapons.get(i);
 		return null;
 	}
 	
@@ -258,7 +259,7 @@ public class Board {
 		while(in.hasNext()) {
 			if(i == NUM_WEAPONS) throw new BadConfigFormatException("Too many weapons");
 			currentLine = in.nextLine();
-			weapons[i] = currentLine;
+			weapons.add(currentLine);
 			deck.add(new Card(currentLine, CardType.WEAPON));
 			i++;
 		}
@@ -288,9 +289,9 @@ public class Board {
 			//Add error catching for out of bounds later
 			BoardCell boardCell = getCellAt(Integer.parseInt(arr[2].trim()),Integer.parseInt(arr[3].trim()));
 			if(arr[4].trim().equalsIgnoreCase("Computer"))
-			players[i] = new ComputerPlayer(name,color, boardCell);
+			players.add(new ComputerPlayer(name,color, boardCell));
 			else if (arr[4].trim().equalsIgnoreCase("Human"))
-			players[i] = new HumanPlayer(name,color, boardCell);
+			players.add(new HumanPlayer(name,color, boardCell));
 			else throw new BadConfigFormatException("Neither Computer nor Human Player");
 			deck.add(new Card(name, CardType.PERSON));
 			i++;
@@ -372,7 +373,8 @@ public class Board {
 	}
 
 	public boolean checkAccusation(Solution accusation) {
-		return false;
+		return theAnswer == accusation;
+		//return theAnswer == accusation && theAnswer == accusation && theAnswer == accusation;
 	}
 	
 	//color converter from stack overflow
@@ -418,7 +420,7 @@ public class Board {
 			
 			if(dealTo == NUM_PLAYERS)
 				dealTo = 0;
-			players[dealTo].addToSeen(i);
+			players.get(dealTo).addToSeen(i);
 			dealTo++;
 		}
 	}

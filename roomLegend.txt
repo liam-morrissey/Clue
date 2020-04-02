@@ -9,4 +9,3 @@ T, Theater, Card
 H, Hall, Card
 W, Walkway, Other
 X, Closet, Other
-

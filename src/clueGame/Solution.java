@@ -17,6 +17,12 @@ public class Solution {
 		this.weapon = null;
 	}
 	
+	public Solution(Card p, Card r, Card w) {
+		this.person = p;
+		this.room = r;
+		this.weapon = w;
+	}
+	
 	public Card getPerson() {
 		return person;
 	}
