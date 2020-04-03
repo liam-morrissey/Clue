@@ -2,6 +2,9 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.awt.Color;
+
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -13,6 +16,7 @@ import clueGame.Solution;
 
 public class gameActionTests {
 	static Board board;
+	ComputerPlayer cp;
 	@BeforeClass
 	public static void setup() {
 		board = Board.getInstance();
@@ -45,8 +49,30 @@ public class gameActionTests {
 		fail("Not yet implemented");
 	}
 	
-	@Test
-	public void testCreateSuggestion() {
-		fail("Not yet implemented");
+	
+	//Create suggestion for one weapon test and one person
+	@Before
+	public void createSuggestionSetup1() {
+		cp = new ComputerPlayer("cpu", Color.GREEN, board.getCellAt(17,3));
 	}
+	@Test
+	public void testCreateSuggestion1() {
+		assertEquals("Bedroom", cp.getRoom());
+		assertEquals("Knife", cp.createSuggestion().getWeapon());
+		assertEquals("Mrs. Scarlet", cp.createSuggestion().getPerson());
+		
+	}
+	
+	//Create suggestion for multiple people and weapons
+		@Before
+		public void createSuggestionSetup2() {
+			cp = new ComputerPlayer("cpu", Color.GREEN, board.getCellAt(17,3));
+		}
+		@Test
+		public void testCreateSuggestion2() {
+			assertEquals("Bedroom", cp.getRoom());
+			assertTrue(!cp.showCards().contains( cp.createSuggestion().getWeapon()));
+			assertTrue(!cp.showCards().contains(cp.createSuggestion().getPerson()));
+			
+		}
 }

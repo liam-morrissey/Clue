@@ -53,7 +53,6 @@ public class Board {
 	
 	// this method returns the only Board
 	public static Board getInstance() {
-		theInstance.initializeMemory();
 		return theInstance;
 	}
 
