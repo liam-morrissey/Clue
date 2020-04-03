@@ -31,7 +31,7 @@ public class ComputerPlayer extends Player {
 		
 		// Find if one of the spaces is a doorway and enter it if it is
 		for(BoardCell testRoom : targets) {
-			if(testRoom.isDoorway())
+			if(testRoom.isDoorway() && testRoom != prevRoom)
 				return testRoom;
 		}
 		

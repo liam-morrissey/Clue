@@ -102,10 +102,22 @@ public class gameActionTests {
 	@Test
 	public void testCreateSuggestion2() {
 		ComputerPlayer cp = new ComputerPlayer("cpu", Color.GREEN, board.getCellAt(17,3));
+		// Populate a fake deck of seen and unseen cards
+		ArrayList<Card> possibleCards = new ArrayList<Card>();
+		possibleCards.add(new Card("Knife", CardType.WEAPON));
+		possibleCards.add(new Card("Mrs. Scarlet", CardType.PERSON));
+		possibleCards.add(new Card("Candlestick", CardType.WEAPON));
+		possibleCards.add(new Card("Someone", CardType.PERSON));
+		cp.addToSeen(new Card("Revolver", CardType.WEAPON), true);
+		cp.addToSeen(new Card("Lead Pipe", CardType.WEAPON), true);
+		cp.addToSeen(new Card("Mr. Green", CardType.PERSON), true);
+		cp.addToSeen(new Card("Mr. Orange", CardType.PERSON), true);
+		cp.addPossibleCards(possibleCards);
+		
 		cp.createSuggestion();
-		assertEquals("Bedroom", cp.getSuggestion().getRoom());
-		assertTrue(!cp.showCards().contains( cp.getSuggestion().getWeapon()));
-		assertTrue(!cp.showCards().contains(cp.getSuggestion().getPerson()));		
+		System.out.println(cp.getSuggestion());
+		assertEquals("Bedroom", cp.getSuggestion().getRoom().getName());
+		assertTrue(!cp.showCards().contains(cp.getSuggestion().getWeapon().getName()));
+		assertTrue(!cp.showCards().contains(cp.getSuggestion().getPerson().getName()));
 	}
-	
 }
