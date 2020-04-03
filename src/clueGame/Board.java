@@ -20,11 +20,11 @@ import java.util.Scanner;
  *
  */
 public class Board {
-	private static final int NUM_WEAPONS = 6;
-	private static final int NUM_PLAYERS = 6;
+	public static final int NUM_WEAPONS = 6;
+	public static final int NUM_PLAYERS = 6;
 
 	// Initialization variables
-	public final int MAX_BOARD_SIZE = 50;
+	public static final int MAX_BOARD_SIZE = 50;
 	
 	private BoardCell[][] board;
 	private Map<BoardCell, Set<BoardCell>> adjacencies;

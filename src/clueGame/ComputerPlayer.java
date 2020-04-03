@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -12,8 +13,9 @@ import java.util.Set;
  *
  */
 public class ComputerPlayer extends Player {
-	private BoardCell targetRoom = null, currentRoom = null;
-	private Set<BoardCell> targetRoomList;
+	// suggestion used for suggestions and accusations
+	private Solution suggestion;
+	private BoardCell prevRoom;
 	
 	public String getPlayerType() {
 		return "Computer";
@@ -21,21 +23,23 @@ public class ComputerPlayer extends Player {
 
 	public ComputerPlayer(String name, Color color, BoardCell boardCell) {
 		super(name, color, boardCell);
-		targetRoomList = new HashSet<BoardCell>();
+		suggestion = new Solution();
 	}
 
 	public BoardCell pickLocation(Set<BoardCell> targets) {
-		return targetRoom;
+		BoardCell moveTo = null;
+		return moveTo;
 	}
 	
 	public void makeAccusation() {
 		return;
 	}
 	
-	public Solution createSuggestion() {
-		Card suggestPerson = randCardSelector(possiblePeople);
-		Card suggestWeapon = randCardSelector(possibleWeapons);
-		return new Solution(suggestPerson,getCurrentRoomCard(),suggestWeapon);
+
+	public void createSuggestion() {
+		suggestion.setPerson(randCardSelector(possiblePeople));
+		suggestion.setRoom(getCurrentRoomCard());
+		suggestion.setWeapon(randCardSelector(possibleWeapons));
 	}
 	
 	private Card randCardSelector(Set<Card> set) {
@@ -49,7 +53,11 @@ public class ComputerPlayer extends Player {
 		return null;
 	}
 	
-	public Set<BoardCell> getTargetList(){
-		return targetRoomList;
+	public Solution getSuggestion() {
+		return suggestion;
+	}
+	
+	public void setPrevRoom(BoardCell p) {
+		prevRoom = p;
 	}
 }

@@ -2,6 +2,8 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.awt.Color;
 
 import org.junit.Before;
@@ -13,10 +15,11 @@ import clueGame.Card;
 import clueGame.CardType;
 import clueGame.ComputerPlayer;
 import clueGame.Solution;
+import clueGame.BoardCell;
 
 public class gameActionTests {
 	static Board board;
-	ComputerPlayer cp;
+	
 	@BeforeClass
 	public static void setup() {
 		board = Board.getInstance();
@@ -26,7 +29,36 @@ public class gameActionTests {
 	
 	@Test
 	public void testSelectTargetLocation() {
-		fail("Not yet implemented");
+		ComputerPlayer testPlayer = new ComputerPlayer(null, null, board.getCellAt(5, 6));
+		BoardCell targetCell = null;
+		Set<BoardCell> targetCellSet = new HashSet<BoardCell>();
+		
+		// Tests that the target selected can be reached when all targets are walkways and that more than one cell is being visited
+		board.calcTargets(board.getCellAt(5, 6), 2);
+		for(int i = 0; i < 20; i++) {
+			targetCell = testPlayer.pickLocation(board.getTargets());
+			assertTrue(board.getTargets().contains(targetCell));
+			targetCellSet.add(targetCell);
+		}
+		assertTrue(targetCellSet.size() > 1);
+		
+		// Tests that the player will only go into the doorway
+		board.calcTargets(board.getCellAt(4, 3), 2);
+		for(int i = 0; i < 20; i++) {
+			targetCell = testPlayer.pickLocation(board.getTargets());
+			assertEquals(targetCell, board.getCellAt(2, 3));
+		}
+		
+		// Tests that the player will treat all rooms equally when the room was previously visited
+		board.calcTargets(board.getCellAt(4, 3), 2);
+		testPlayer.setPrevRoom(board.getCellAt(2, 3));
+		targetCellSet.clear();
+		for(int i = 0; i < 20; i++) {
+			targetCell = testPlayer.pickLocation(board.getTargets());
+			assertTrue(board.getTargets().contains(targetCell));
+			targetCellSet.add(targetCell);
+		}
+		assertTrue(targetCellSet.size() > 1);
 	}
 	
 	@Test
@@ -50,29 +82,26 @@ public class gameActionTests {
 	}
 	
 	
+	
 	//Create suggestion for one weapon test and one person
-	@Before
-	public void createSuggestionSetup1() {
-		cp = new ComputerPlayer("cpu", Color.GREEN, board.getCellAt(17,3));
-	}
 	@Test
 	public void testCreateSuggestion1() {
-		assertEquals("Bedroom", cp.createSuggestion().getRoom());
-		assertEquals("Knife", cp.createSuggestion().getWeapon());
-		assertEquals("Mrs. Scarlet", cp.createSuggestion().getPerson());
+		ComputerPlayer cp = new ComputerPlayer("cpu", Color.GREEN, board.getCellAt(17,3));
+		cp.createSuggestion();
+		assertEquals("Bedroom", cp.getSuggestion().getRoom());
+		assertEquals("Knife", cp.getSuggestion().getWeapon());
+		assertEquals("Mrs. Scarlet", cp.getSuggestion().getPerson());
 		
 	}
 	
 	//Create suggestion for multiple people and weapons
-		@Before
-		public void createSuggestionSetup2() {
-			cp = new ComputerPlayer("cpu", Color.GREEN, board.getCellAt(17,3));
-		}
-		@Test
-		public void testCreateSuggestion2() {
-			assertEquals("Bedroom", cp.createSuggestion().getRoom());
-			assertTrue(!cp.showCards().contains( cp.createSuggestion().getWeapon()));
-			assertTrue(!cp.showCards().contains(cp.createSuggestion().getPerson()));
-			
-		}
+	@Test
+	public void testCreateSuggestion2() {
+		ComputerPlayer cp = new ComputerPlayer("cpu", Color.GREEN, board.getCellAt(17,3));
+		cp.createSuggestion();
+		assertEquals("Bedroom", cp.getSuggestion().getRoom());
+		assertTrue(!cp.showCards().contains( cp.getSuggestion().getWeapon()));
+		assertTrue(!cp.showCards().contains(cp.getSuggestion().getPerson()));		
+	}
+	
 }
