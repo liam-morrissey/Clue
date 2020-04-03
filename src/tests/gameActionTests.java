@@ -2,6 +2,9 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -10,6 +13,7 @@ import clueGame.Card;
 import clueGame.CardType;
 import clueGame.ComputerPlayer;
 import clueGame.Solution;
+import clueGame.BoardCell;
 
 public class gameActionTests {
 	static Board board;
@@ -22,7 +26,36 @@ public class gameActionTests {
 	
 	@Test
 	public void testSelectTargetLocation() {
-		fail("Not yet implemented");
+		ComputerPlayer testPlayer = new ComputerPlayer(null, null, board.getCellAt(5, 6));
+		BoardCell targetCell = null;
+		Set<BoardCell> targetCellSet = new HashSet<BoardCell>();
+		
+		// Tests that the target selected can be reached when all targets are walkways and that more than one cell is being visited
+		board.calcTargets(board.getCellAt(5, 6), 2);
+		for(int i = 0; i < 20; i++) {
+			targetCell = testPlayer.pickLocation(board.getTargets());
+			assertTrue(board.getTargets().contains(targetCell));
+			targetCellSet.add(targetCell);
+		}
+		assertTrue(targetCellSet.size() > 1);
+		
+		// Tests that the player will only go into the doorway
+		board.calcTargets(board.getCellAt(4, 3), 2);
+		for(int i = 0; i < 20; i++) {
+			targetCell = testPlayer.pickLocation(board.getTargets());
+			assertEquals(targetCell, board.getCellAt(2, 3));
+		}
+		
+		// Tests that the player will treat all rooms equally when the room was previously visited
+		board.calcTargets(board.getCellAt(4, 3), 2);
+		testPlayer.setPrevRoom(board.getCellAt(2, 3));
+		targetCellSet.clear();
+		for(int i = 0; i < 20; i++) {
+			targetCell = testPlayer.pickLocation(board.getTargets());
+			assertTrue(board.getTargets().contains(targetCell));
+			targetCellSet.add(targetCell);
+		}
+		assertTrue(targetCellSet.size() > 1);
 	}
 	
 	@Test

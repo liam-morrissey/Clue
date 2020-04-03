@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,8 +12,9 @@ import java.util.Set;
  *
  */
 public class ComputerPlayer extends Player {
-	private BoardCell targetRoom = null, currentRoom = null;
-	private Set<BoardCell> targetRoomList;
+	// suggestion used for suggestions and accusations
+	private Solution suggestion;
+	private BoardCell prevRoom;
 	
 	public String getPlayerType() {
 		return "Computer";
@@ -20,11 +22,11 @@ public class ComputerPlayer extends Player {
 
 	public ComputerPlayer(String name, Color color, BoardCell boardCell) {
 		super(name, color, boardCell);
-		targetRoomList = new HashSet<BoardCell>();
 	}
 
 	public BoardCell pickLocation(Set<BoardCell> targets) {
-		return targetRoom;
+		BoardCell moveTo = null;
+		return moveTo;
 	}
 	
 	public void makeAccusation() {
@@ -35,7 +37,11 @@ public class ComputerPlayer extends Player {
 		return;
 	}
 	
-	public Set<BoardCell> getTargetList(){
-		return targetRoomList;
+	public Solution getSuggestion() {
+		return suggestion;
+	}
+	
+	public void setPrevRoom(BoardCell p) {
+		prevRoom = p;
 	}
 }
