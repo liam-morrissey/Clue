@@ -79,7 +79,39 @@ public class gameActionTests {
 	
 	@Test
 	public void testDisproveSuggestion() {
-		fail("Not yet implemented");
+		// Create a test player and a fake hand
+		ComputerPlayer cp = new ComputerPlayer("cpu", Color.GREEN, board.getCellAt(17,3));
+		cp.addToSeen(new Card("Revolver", CardType.WEAPON), true);
+		cp.addToSeen(new Card("Mr. Green", CardType.PERSON), true);
+		cp.addToSeen(new Card("Bedroom", CardType.ROOM), true);
+		
+		// Create a suggestion that the player has all the cards for and tests random selection
+		Solution testSuggestion = new Solution(new Card("Mr. Green", CardType.PERSON), 
+											   new Card("Bedroom", CardType.ROOM),
+											   new Card("Revolver", CardType.WEAPON));
+		Set<Card> disproven = new HashSet<Card>();
+		for(int i = 0; i < 20; i++) {
+			disproven.add(cp.diproveSuggestion(testSuggestion));
+		}
+		assertTrue(disproven.size() > 1);
+		
+		// Create a suggestion that the player has one of and tests that only that card is selected
+		testSuggestion = new Solution(new Card("x", CardType.PERSON), 
+									  new Card("Bedroom", CardType.ROOM),
+									  new Card("x", CardType.WEAPON));
+		disproven.clear();
+		for(int i = 0; i < 20; i++) {
+			disproven.add(cp.diproveSuggestion(testSuggestion));
+		}
+		assertTrue(disproven.size() == 1);
+		
+		// Create a suggestion that the player has none one of and tests that null is returned
+		testSuggestion = new Solution(new Card("x", CardType.PERSON), 
+									  new Card("x", CardType.ROOM),
+									  new Card("x", CardType.WEAPON));
+		for(int i = 0; i < 20; i++) {
+			assertEquals(cp.diproveSuggestion(testSuggestion), null);
+		}
 	}
 	
 	//Create suggestion for one weapon test and one person
@@ -121,6 +153,6 @@ public class gameActionTests {
 	
 	@Test
 	public void testHandleSuggestion() {
-		
+		fail("Not yet implemented");
 	}
 }
