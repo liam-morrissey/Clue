@@ -17,13 +17,16 @@ public class Player {
 	private String playerName;
 	private BoardCell location;
 	private Color color;
-	private Set<Card> seenCards;
-	private Set<Card> cardsInHand;
+	private Set<Card> seenCards; //this is a set of the cards the player has seen
+	private Set<Card> cardsInHand; //This is a set of the cards initially delt
 	
 	//This is done for easy comparison/finding which cards to use in suggestions
 	protected Set<Card> possiblePeople;
 	protected Set<Card> possibleWeapons;
 	protected Set<Card> possibleRooms;
+	
+	// suggestion used for suggestions and accusations
+	protected Solution suggestion;
 	
 
 	public Player(String name, Color color, BoardCell boardCell) {
@@ -37,28 +40,24 @@ public class Player {
 		possibleRooms = new HashSet<Card>();
 	}
 
-	//helper functions
+	//helper function: adds cards that are possible solutions into sets
 	public void addPossibleCards(ArrayList<Card> list) {
 		for(Card c: list) {
-			// Skips the current card if it is in the player's hand
-			if(seenCards.contains(c)) {
-				continue;
-			}
-			
 			switch(c.getType()) {
-			case PERSON:
-				possiblePeople.add(c);
-				break;
-			case WEAPON:
-				possibleWeapons.add(c);
-				break;
-			case ROOM:
-				possibleRooms.add(c);
-				break;
-			}
+				case PERSON:
+					possiblePeople.add(c);
+					break;
+				case WEAPON:
+					possibleWeapons.add(c);
+					break;
+				case ROOM:
+					possibleRooms.add(c);
+					break;
+				}
 		}
 	}
 	
+	//removes a seen card from the correct set
 	public void removePossibleCard(Card c) {
 		switch(c.getType()) {
 		case PERSON:
@@ -97,25 +96,33 @@ public class Player {
 		return "Player";
 	}
 	
-	public Set<Card> showCards() {
+	public Set<Card> showSeenCards() {
 		return seenCards;
 	}
 	public Card getCurrentRoomCard() {
 		return Board.getInstance().getRoomCard(location.getInitial());
 	} 
+
+	public Solution getSuggestion() {
+		return suggestion;
+	}
+	public void setSuggestion(Solution s) {
+		suggestion = s;
+	}
 	
 	
+	//adds a card to seen cards and removes it from possible set
 	public void addToSeen(Card delt) {
 		seenCards.add(delt);			
 		removePossibleCard(delt);
 	}
 	
 	//disprove function
-	public Card diproveSuggestion(Solution suggestion) {
+	public Card disproveSuggestion(Solution suggestion) {
 		// Array of cards that can be used to disprove the suggestion
 		ArrayList<Card> disprove = new ArrayList<Card>();
 		
-		// Loop through seenCards and find all that disprove the suggestion
+		// Loop through cardsInHand and find all that disprove the suggestion
 		for(Card possible : cardsInHand) {
 			if(suggestion.getPerson().equals(possible)) {
 				disprove.add(possible);
@@ -138,6 +145,7 @@ public class Player {
 		}
 	}
 	
+	//function to add to hand and seen set
 	public void addToHand(Card delt) {
 		cardsInHand.add(delt);
 		addToSeen(delt);

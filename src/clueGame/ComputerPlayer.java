@@ -13,8 +13,7 @@ import java.util.Set;
  *
  */
 public class ComputerPlayer extends Player {
-	// suggestion used for suggestions and accusations
-	private Solution suggestion;
+	
 	private BoardCell prevRoom;
 	
 	public String getPlayerType() {
@@ -70,11 +69,7 @@ public class ComputerPlayer extends Player {
 		}
 		return null;
 	}
-	
-	public Solution getSuggestion() {
-		return suggestion;
-	}
-	
+		
 	public void setPrevRoom(BoardCell p) {
 		prevRoom = p;
 	}

@@ -226,6 +226,10 @@ public class Board {
 		else return null;
 	}
 	
+	public ArrayList<Player> getPlayers(){
+		return players;
+	}
+	
 	public String getWeapon(int i) {
 		if(i < weapons.size() && i >= 0) return weapons.get(i);
 		return null;
@@ -383,7 +387,7 @@ public class Board {
 	
 	public void selectAnswer() {}
 
-	public Card handleSuggestion() {
+	public Card handleSuggestion(Player p) {
 		return null;
 	}
 

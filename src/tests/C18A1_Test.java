@@ -70,9 +70,9 @@ public class C18A1_Test {
 	//Test dealing the deck
 	@Test
 	public void testDeal() {
-		Set<Card> playerOneHand = board.getPlayer(0).showCards();
-		Set<Card> playerThreeHand = board.getPlayer(2).showCards();
-		Set<Card> playerSixHand = board.getPlayer(5).showCards();
+		Set<Card> playerOneHand = board.getPlayer(0).showSeenCards();
+		Set<Card> playerThreeHand = board.getPlayer(2).showSeenCards();
+		Set<Card> playerSixHand = board.getPlayer(5).showSeenCards();
 		assertEquals(playerOneHand.size(), 3);
 		assertEquals(playerThreeHand.size(), 3);
 		assertEquals(playerSixHand.size(), 3);

@@ -15,6 +15,8 @@ import clueGame.Board;
 import clueGame.Card;
 import clueGame.CardType;
 import clueGame.ComputerPlayer;
+import clueGame.HumanPlayer;
+import clueGame.Player;
 import clueGame.Solution;
 import clueGame.BoardCell;
 
@@ -91,7 +93,7 @@ public class gameActionTests {
 											   new Card("Revolver", CardType.WEAPON));
 		Set<Card> disproven = new HashSet<Card>();
 		for(int i = 0; i < 20; i++) {
-			disproven.add(cp.diproveSuggestion(testSuggestion));
+			disproven.add(cp.disproveSuggestion(testSuggestion));
 		}
 		assertTrue(disproven.size() > 1);
 		
@@ -101,7 +103,7 @@ public class gameActionTests {
 									  new Card("x", CardType.WEAPON));
 		disproven.clear();
 		for(int i = 0; i < 20; i++) {
-			disproven.add(cp.diproveSuggestion(testSuggestion));
+			disproven.add(cp.disproveSuggestion(testSuggestion));
 		}
 		assertTrue(disproven.size() == 1);
 		
@@ -110,7 +112,7 @@ public class gameActionTests {
 									  new Card("x", CardType.ROOM),
 									  new Card("x", CardType.WEAPON));
 		for(int i = 0; i < 20; i++) {
-			assertEquals(cp.diproveSuggestion(testSuggestion), null);
+			assertEquals(cp.disproveSuggestion(testSuggestion), null);
 		}
 	}
 	
@@ -147,18 +149,69 @@ public class gameActionTests {
 		cp.createSuggestion();
 		System.out.println(cp.getSuggestion());
 		assertEquals("Bedroom", cp.getSuggestion().getRoom().getName());
-		assertTrue(!cp.showCards().contains(cp.getSuggestion().getWeapon().getName()));
-		assertTrue(!cp.showCards().contains(cp.getSuggestion().getPerson().getName()));
+		assertTrue(!cp.showSeenCards().contains(cp.getSuggestion().getWeapon().getName()));
+		assertTrue(!cp.showSeenCards().contains(cp.getSuggestion().getPerson().getName()));
 	}
 	
 	@Test
 	public void testHandleSuggestion() {
+		Player cp1 = new ComputerPlayer("cpu1", Color.GREEN, board.getCellAt(17,3));
+		Player cp2 = new ComputerPlayer("cpu2", Color.WHITE, board.getCellAt(15,3));
+		Player hum = new HumanPlayer("human", Color.BLUE, board.getCellAt(1,3));
+		ArrayList<Player> players = board.getPlayers();
+		players.clear();
+		players.add(cp1);
+		players.add(cp2);
+		players.add(hum);
+		ArrayList<Card> deck = board.getDeck();
+		deck.clear();
+		deck.add(new Card("Mrs. Scarlet", CardType.PERSON)); //0
+		deck.add(new Card("Someone", CardType.PERSON)); //1
+		deck.add(new Card("SomeoneElse", CardType.PERSON));//2
+		deck.add(new Card("SomeoneElse", CardType.PERSON));//3
+		
+		deck.add(new Card("Candlestick", CardType.WEAPON));//4
+		deck.add(new Card("Pointy object", CardType.WEAPON));//5
+		deck.add(new Card("Mace", CardType.WEAPON));//6
+		deck.add(new Card("Gun", CardType.WEAPON));//7
+		
+		deck.add(new Card("Bedroom", CardType.ROOM));//8
+		deck.add(new Card("Study", CardType.ROOM));//9
+		deck.add(new Card("Bathroom", CardType.ROOM));//10
+		deck.add(new Card("Kitchen", CardType.ROOM));//11
+		
+		cp1.addPossibleCards(deck);
+		cp2.addPossibleCards(deck);
+		hum.addPossibleCards(deck);
+		
+		cp1.addToHand(deck.get(1));
+		cp1.addToHand(deck.get(5));
+		cp1.addToHand(deck.get(9));
+		
+		cp2.addToHand(deck.get(2));
+		cp2.addToHand(deck.get(6));
+		cp2.addToHand(deck.get(10));
+		
+		hum.addToHand(deck.get(3));
+		hum.addToHand(deck.get(7));
+		hum.addToHand(deck.get(11));
+		
+		
+		
+		
 		//suggestion no one can disprove
-		assertEquals(null, board.handleSuggestion());
+		cp1.setSuggestion(new Solution(deck.get(0),deck.get(4),deck.get(8)));
+		assertEquals(null, board.handleSuggestion(cp1));
 		//suggestion that accusing player can disprove
-		assertEquals(null, board.handleSuggestion());
+		cp1.setSuggestion(new Solution(deck.get(1),deck.get(4),deck.get(8)));
+		assertEquals(null, board.handleSuggestion(cp1));
 		//suggestion that only human can disprove returns disproving card
-		//assertEquals(,board.handleSuggestion());
+		cp1.setSuggestion(new Solution(deck.get(3),deck.get(4),deck.get(8)));
+		assertEquals(hum.disproveSuggestion(cp1.getSuggestion()),board.handleSuggestion(cp1));
+		//two players can disprove, selects the correct one (human has the other card)
+		cp1.setSuggestion(new Solution(deck.get(2),deck.get(7),deck.get(8)));
+		assertEquals(cp2.disproveSuggestion(cp1.getSuggestion()),board.handleSuggestion(cp1));
+		
 		
 	}
 }
