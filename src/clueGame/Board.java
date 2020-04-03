@@ -391,7 +391,7 @@ public class Board {
 		Solution currentSuggestion = p.getSuggestion();
 		int playerNum = players.indexOf(p);
 		for(int i=1; i<players.size();i++) {
-			Player currentPlayer = players.get((playerNum+i)%players.size());
+			Player currentPlayer = players.get((playerNum+i)%players.size()); //Player that is checking to disprove suggestion
 			if(currentPlayer.disproveSuggestion(currentSuggestion)!= null) return currentPlayer.disproveSuggestion(currentSuggestion);
 		}
 		return null;

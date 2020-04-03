@@ -147,7 +147,6 @@ public class gameActionTests {
 		cp.addPossibleCards(possibleCards);
 		
 		cp.createSuggestion();
-		System.out.println(cp.getSuggestion());
 		assertEquals("Bedroom", cp.getSuggestion().getRoom().getName());
 		assertTrue(!cp.showSeenCards().contains(cp.getSuggestion().getWeapon().getName()));
 		assertTrue(!cp.showSeenCards().contains(cp.getSuggestion().getPerson().getName()));
@@ -168,7 +167,7 @@ public class gameActionTests {
 		deck.add(new Card("Mrs. Scarlet", CardType.PERSON)); //0
 		deck.add(new Card("Someone", CardType.PERSON)); //1
 		deck.add(new Card("SomeoneElse", CardType.PERSON));//2
-		deck.add(new Card("SomeoneElse", CardType.PERSON));//3
+		deck.add(new Card("SomeoneDifferent", CardType.PERSON));//3
 		
 		deck.add(new Card("Candlestick", CardType.WEAPON));//4
 		deck.add(new Card("Pointy object", CardType.WEAPON));//5
