@@ -2,6 +2,7 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.awt.Color;
@@ -87,11 +88,14 @@ public class gameActionTests {
 	@Test
 	public void testCreateSuggestion1() {
 		ComputerPlayer cp = new ComputerPlayer("cpu", Color.GREEN, board.getCellAt(17,3));
+		ArrayList<Card> possibleCards = new ArrayList<Card>();
+		possibleCards.add(new Card("Knife", CardType.WEAPON));
+		possibleCards.add(new Card("Mrs. Scarlet", CardType.PERSON));
+		cp.addPossibleCards(possibleCards);
 		cp.createSuggestion();
-		assertEquals("Bedroom", cp.getSuggestion().getRoom());
-		assertEquals("Knife", cp.getSuggestion().getWeapon());
-		assertEquals("Mrs. Scarlet", cp.getSuggestion().getPerson());
-		
+		assertTrue("Bedroom".equals(cp.getSuggestion().getRoom().getName()));
+		assertTrue("Knife".equals(cp.getSuggestion().getWeapon().getName()));
+		assertTrue("Mrs. Scarlet".equals(cp.getSuggestion().getPerson().getName()));
 	}
 	
 	//Create suggestion for multiple people and weapons

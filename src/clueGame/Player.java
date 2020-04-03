@@ -32,16 +32,16 @@ public class Player {
 		possiblePeople = new HashSet<Card>();
 		possibleWeapons = new HashSet<Card>();
 		possibleRooms = new HashSet<Card>();
-		
-		/*addPossibleCards(Board.getInstance().getDeck());
-		for(Card c : seenCards) {
-			removePossibleCard(c);
-		}*/
 	}
 
 	//helper functions
 	public void addPossibleCards(ArrayList<Card> list) {
 		for(Card c: list) {
+			// Skips the current card if it is in the player's hand
+			if(seenCards.contains(c)) {
+				continue;
+			}
+			
 			switch(c.getType()) {
 			case PERSON:
 				possiblePeople.add(c);
@@ -102,9 +102,12 @@ public class Player {
 	} 
 	
 	
-	public void addToSeen(Card delt) {
+	public void addToSeen(Card delt, boolean initial) {
 		seenCards.add(delt);
-		//removePossibleCard(delt);
+		
+		// Remove the card from the possibilities if this is not the initial deal
+		if(!initial)
+			removePossibleCard(delt);
 	}
 	
 	//disprove function

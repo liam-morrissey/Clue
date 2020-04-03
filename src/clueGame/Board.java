@@ -417,6 +417,7 @@ public class Board {
 		
 		int dealTo = 0;
 		for(Card i : deck) {
+			// These will deal the first Person Room and Weapon to the solution then will deal the rest to the players
 			if(theAnswer.getPerson() == null && i.getType() == CardType.PERSON) {
 				theAnswer.setPerson(i);
 				continue;
@@ -434,8 +435,13 @@ public class Board {
 			
 			if(dealTo == NUM_PLAYERS)
 				dealTo = 0;
-			players.get(dealTo).addToSeen(i);
+			players.get(dealTo).addToSeen(i, true);
 			dealTo++;
+		}
+		
+		// Populate the possible sets
+		for(Player currPlayer : players) {
+			currPlayer.addPossibleCards(deck);
 		}
 	}
 }

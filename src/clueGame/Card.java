@@ -19,6 +19,10 @@ public class Card {
 		return type;
 	}
 	
+	public String getName() {
+		return cardName;
+	}
+	
 	public boolean equals() {
 		return false;
 	}

@@ -28,6 +28,23 @@ public class ComputerPlayer extends Player {
 
 	public BoardCell pickLocation(Set<BoardCell> targets) {
 		BoardCell moveTo = null;
+		
+		// Find if one of the spaces is a doorway and enter it if it is
+		for(BoardCell testRoom : targets) {
+			if(testRoom.isDoorway())
+				return testRoom;
+		}
+		
+		// Gets a random room
+		Random rand = new Random();
+		int randNum = rand.nextInt(targets.size());
+		int i = 0;
+		for(BoardCell randRoom : targets) {
+			if(i == randNum)
+				return randRoom;
+			i++;
+		}
+		
 		return moveTo;
 	}
 	
@@ -37,8 +54,6 @@ public class ComputerPlayer extends Player {
 	
 
 	public void createSuggestion() {
-		possiblePeople.add(getCurrentRoomCard());
-		possibleWeapons.add(getCurrentRoomCard());
 		suggestion.setPerson(randCardSelector(possiblePeople));
 		suggestion.setRoom(getCurrentRoomCard());
 		suggestion.setWeapon(randCardSelector(possibleWeapons));
@@ -48,7 +63,7 @@ public class ComputerPlayer extends Player {
 		Random rand = new Random();
 		int randNum = rand.nextInt(set.size());
 		int count = 0;
-		for(Card c: possiblePeople) {
+		for(Card c: set) {
 			if(count == randNum)
 				return c;
 			count++;
