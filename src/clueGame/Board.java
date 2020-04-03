@@ -32,6 +32,7 @@ public class Board {
 	private Set<BoardCell> targets;
 	private ArrayList<Card> deck;
 	private Map<Character, String> legend;
+	private Map<Character, Card> cardLegend;
 	private int numRows;
 	private int numCols;
 	
@@ -79,6 +80,7 @@ public class Board {
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
 		legend = new HashMap<Character, String>();
+		cardLegend = new HashMap<Character, Card>();
 		deck = new ArrayList<Card>();
 	}
 	
@@ -240,6 +242,17 @@ public class Board {
 		return contain;
 	}
 	
+	public ArrayList<Card> getDeck(){
+		return deck;
+	}
+	
+	public Card getRoomCard(char c) {
+		return cardLegend.get(c);
+	}
+	
+	
+	
+	
 	/**
 	 * 
 	 * @throws BadConfigFormatException
@@ -311,12 +324,15 @@ public class Board {
 		while(in.hasNext()) {
 			currentLine = in.nextLine();
 			String arr[] = currentLine.split(", ");
+			Card room = null;
 			if(arr.length <3) throw new BadConfigFormatException();
 			if(!arr[2].equals("Card") && !arr[2].equals("Other"))throw new BadConfigFormatException("Invalid Type of Room");
 			if(arr[2].equals("Card")) {
-				deck.add(new Card(arr[1], CardType.ROOM));
+				room = new Card(arr[1], CardType.ROOM);
+				deck.add(room);
 			}
 			legend.put(arr[0].charAt(0), arr[1]); 
+			cardLegend.put(arr[0].charAt(0),room);
 		}
 		
 		in.close();

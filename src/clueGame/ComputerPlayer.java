@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.Color;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -31,8 +32,21 @@ public class ComputerPlayer extends Player {
 		return;
 	}
 	
-	public void createSuggestion() {
-		return;
+	public Solution createSuggestion() {
+		Card suggestPerson = randCardSelector(possiblePeople);
+		Card suggestWeapon = randCardSelector(possibleWeapons);
+		return new Solution(suggestPerson,getCurrentRoomCard(),suggestWeapon);
+	}
+	
+	private Card randCardSelector(Set<Card> set) {
+		int rand = new Random().nextInt(set.size());
+		int count = 0;
+		for(Card c: possiblePeople) {
+			if(count == rand)
+				return c;
+			count++;
+		}
+		return null;
 	}
 	
 	public Set<BoardCell> getTargetList(){
