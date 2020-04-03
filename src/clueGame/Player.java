@@ -29,10 +29,14 @@ public class Player {
 		this.location = boardCell;
 		this.color = color;
 		seenCards = new HashSet<Card>();
-		addPossibleCards(Board.getInstance().getDeck());
+		possiblePeople = new HashSet<Card>();
+		possibleWeapons = new HashSet<Card>();
+		possibleRooms = new HashSet<Card>();
+		
+		/*addPossibleCards(Board.getInstance().getDeck());
 		for(Card c : seenCards) {
-		removePossibleCard(c);
-		}
+			removePossibleCard(c);
+		}*/
 	}
 
 	//helper functions
@@ -53,17 +57,17 @@ public class Player {
 	}
 	
 	public void removePossibleCard(Card c) {
-			switch(c.getType()) {
-			case PERSON:
-				possiblePeople.remove(c);
-				break;
-			case WEAPON:
-				possibleWeapons.remove(c);
-				break;
-			case ROOM:
-				possibleRooms.remove(c);
-				break;
-			}
+		switch(c.getType()) {
+		case PERSON:
+			possiblePeople.remove(c);
+			break;
+		case WEAPON:
+			possibleWeapons.remove(c);
+			break;
+		case ROOM:
+			possibleRooms.remove(c);
+			break;
+		}
 	}
 	
 	//setters and getters
@@ -100,7 +104,7 @@ public class Player {
 	
 	public void addToSeen(Card delt) {
 		seenCards.add(delt);
-		removePossibleCard(delt);
+		//removePossibleCard(delt);
 	}
 	
 	//disprove function

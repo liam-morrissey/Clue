@@ -37,16 +37,19 @@ public class ComputerPlayer extends Player {
 	
 
 	public void createSuggestion() {
+		possiblePeople.add(getCurrentRoomCard());
+		possibleWeapons.add(getCurrentRoomCard());
 		suggestion.setPerson(randCardSelector(possiblePeople));
 		suggestion.setRoom(getCurrentRoomCard());
 		suggestion.setWeapon(randCardSelector(possibleWeapons));
 	}
 	
 	private Card randCardSelector(Set<Card> set) {
-		int rand = new Random().nextInt(set.size());
+		Random rand = new Random();
+		int randNum = rand.nextInt(set.size());
 		int count = 0;
 		for(Card c: possiblePeople) {
-			if(count == rand)
+			if(count == randNum)
 				return c;
 			count++;
 		}
