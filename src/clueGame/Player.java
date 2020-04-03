@@ -18,6 +18,7 @@ public class Player {
 	private BoardCell location;
 	private Color color;
 	private Set<Card> seenCards;
+	private Set<Card> cardsInHand;
 	
 	//This is done for easy comparison/finding which cards to use in suggestions
 	protected Set<Card> possiblePeople;
@@ -30,6 +31,7 @@ public class Player {
 		this.location = boardCell;
 		this.color = color;
 		seenCards = new HashSet<Card>();
+		cardsInHand = new HashSet<Card>();
 		possiblePeople = new HashSet<Card>();
 		possibleWeapons = new HashSet<Card>();
 		possibleRooms = new HashSet<Card>();
@@ -103,12 +105,9 @@ public class Player {
 	} 
 	
 	
-	public void addToSeen(Card delt, boolean initial) {
-		seenCards.add(delt);
-		
-		// Remove the card from the possibilities if this is not the initial deal
-		if(!initial)
-			removePossibleCard(delt);
+	public void addToSeen(Card delt) {
+		seenCards.add(delt);			
+		removePossibleCard(delt);
 	}
 	
 	//disprove function
@@ -117,7 +116,7 @@ public class Player {
 		ArrayList<Card> disprove = new ArrayList<Card>();
 		
 		// Loop through seenCards and find all that disprove the suggestion
-		for(Card possible : seenCards) {
+		for(Card possible : cardsInHand) {
 			if(suggestion.getPerson().equals(possible)) {
 				disprove.add(possible);
 				continue;
@@ -138,4 +137,10 @@ public class Player {
 			return disprove.get(rand.nextInt(disprove.size()));
 		}
 	}
+	
+	public void addToHand(Card delt) {
+		cardsInHand.add(delt);
+		addToSeen(delt);
+	}
+
 }

@@ -81,9 +81,9 @@ public class gameActionTests {
 	public void testDisproveSuggestion() {
 		// Create a test player and a fake hand
 		ComputerPlayer cp = new ComputerPlayer("cpu", Color.GREEN, board.getCellAt(17,3));
-		cp.addToSeen(new Card("Revolver", CardType.WEAPON), true);
-		cp.addToSeen(new Card("Mr. Green", CardType.PERSON), true);
-		cp.addToSeen(new Card("Bedroom", CardType.ROOM), true);
+		cp.addToHand(new Card("Revolver", CardType.WEAPON));
+		cp.addToHand(new Card("Mr. Green", CardType.PERSON));
+		cp.addToHand(new Card("Bedroom", CardType.ROOM));
 		
 		// Create a suggestion that the player has all the cards for and tests random selection
 		Solution testSuggestion = new Solution(new Card("Mr. Green", CardType.PERSON), 
@@ -138,10 +138,10 @@ public class gameActionTests {
 		possibleCards.add(new Card("Mrs. Scarlet", CardType.PERSON));
 		possibleCards.add(new Card("Candlestick", CardType.WEAPON));
 		possibleCards.add(new Card("Someone", CardType.PERSON));
-		cp.addToSeen(new Card("Revolver", CardType.WEAPON), true);
-		cp.addToSeen(new Card("Lead Pipe", CardType.WEAPON), true);
-		cp.addToSeen(new Card("Mr. Green", CardType.PERSON), true);
-		cp.addToSeen(new Card("Mr. Orange", CardType.PERSON), true);
+		cp.addToHand(new Card("Revolver", CardType.WEAPON));
+		cp.addToHand(new Card("Lead Pipe", CardType.WEAPON));
+		cp.addToHand(new Card("Mr. Green", CardType.PERSON));
+		cp.addToHand(new Card("Mr. Orange", CardType.PERSON));
 		cp.addPossibleCards(possibleCards);
 		
 		cp.createSuggestion();
@@ -153,6 +153,12 @@ public class gameActionTests {
 	
 	@Test
 	public void testHandleSuggestion() {
-		fail("Not yet implemented");
+		//suggestion no one can disprove
+		assertEquals(null, board.handleSuggestion());
+		//suggestion that accusing player can disprove
+		assertEquals(null, board.handleSuggestion());
+		//suggestion that only human can disprove returns disproving card
+		//assertEquals(,board.handleSuggestion());
+		
 	}
 }
