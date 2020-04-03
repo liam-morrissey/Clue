@@ -23,8 +23,8 @@ public class Card {
 		return cardName;
 	}
 	
-	public boolean equals() {
-		return false;
+	public boolean equals(Card compTo) {
+		return this.cardName.equals(compTo.cardName) && this.type == compTo.type;
 	}
 	
 	public String toString() {

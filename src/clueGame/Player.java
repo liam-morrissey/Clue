@@ -3,6 +3,7 @@ package clueGame;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 /**
  * 
@@ -112,6 +113,29 @@ public class Player {
 	
 	//disprove function
 	public Card diproveSuggestion(Solution suggestion) {
-		return null;
+		// Array of cards that can be used to disprove the suggestion
+		ArrayList<Card> disprove = new ArrayList<Card>();
+		
+		// Loop through seenCards and find all that disprove the suggestion
+		for(Card possible : seenCards) {
+			if(suggestion.getPerson().equals(possible)) {
+				disprove.add(possible);
+				continue;
+			} else if(suggestion.getRoom().equals(possible)) {
+				disprove.add(possible);
+				continue;
+			} else if(suggestion.getWeapon().equals(possible)) {
+				disprove.add(possible);
+				continue;
+			}
+		}
+		
+		// Return null if no cards disprove, otherwise return a random card that disproves the suggestion
+		if(disprove.size() == 0)
+			return null;
+		else {
+			Random rand = new Random();
+			return disprove.get(rand.nextInt(disprove.size()));
+		}
 	}
 }
