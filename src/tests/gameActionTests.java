@@ -82,8 +82,6 @@ public class gameActionTests {
 		fail("Not yet implemented");
 	}
 	
-	
-	
 	//Create suggestion for one weapon test and one person
 	@Test
 	public void testCreateSuggestion1() {
@@ -119,5 +117,10 @@ public class gameActionTests {
 		assertEquals("Bedroom", cp.getSuggestion().getRoom().getName());
 		assertTrue(!cp.showCards().contains(cp.getSuggestion().getWeapon().getName()));
 		assertTrue(!cp.showCards().contains(cp.getSuggestion().getPerson().getName()));
+	}
+	
+	@Test
+	public void testHandleSuggestion() {
+		
 	}
 }
