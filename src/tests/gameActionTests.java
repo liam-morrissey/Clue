@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.awt.Color;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -17,6 +19,7 @@ import clueGame.BoardCell;
 
 public class gameActionTests {
 	static Board board;
+	
 	@BeforeClass
 	public static void setup() {
 		board = Board.getInstance();
@@ -78,8 +81,25 @@ public class gameActionTests {
 		fail("Not yet implemented");
 	}
 	
+	
+	//Create suggestion for one weapon test and one person
 	@Test
-	public void testCreateSuggestion() {
-		fail("Not yet implemented");
+	public void testCreateSuggestion1() {
+		ComputerPlayer cp = new ComputerPlayer("cpu", Color.GREEN, board.getCellAt(17,3));
+		cp.createSuggestion();
+		assertEquals("Bedroom", cp.getSuggestion().getRoom());
+		assertEquals("Knife", cp.getSuggestion().getWeapon());
+		assertEquals("Mrs. Scarlet", cp.getSuggestion().getPerson());
+		
+	}
+	
+	//Create suggestion for multiple people and weapons
+	@Test
+	public void testCreateSuggestion2() {
+		ComputerPlayer cp = new ComputerPlayer("cpu", Color.GREEN, board.getCellAt(17,3));
+		cp.createSuggestion();
+		assertEquals("Bedroom", cp.getSuggestion().getRoom());
+		assertTrue(!cp.showCards().contains( cp.getSuggestion().getWeapon()));
+		assertTrue(!cp.showCards().contains(cp.getSuggestion().getPerson()));		
 	}
 }

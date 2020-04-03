@@ -22,6 +22,7 @@ public class ComputerPlayer extends Player {
 
 	public ComputerPlayer(String name, Color color, BoardCell boardCell) {
 		super(name, color, boardCell);
+		suggestion = new Solution();
 	}
 
 	public BoardCell pickLocation(Set<BoardCell> targets) {
@@ -34,6 +35,9 @@ public class ComputerPlayer extends Player {
 	}
 	
 	public void createSuggestion() {
+		suggestion.setPerson(null);
+		suggestion.setRoom(null);
+		suggestion.setWeapon(null);
 		return;
 	}
 	
