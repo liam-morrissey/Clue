@@ -57,7 +57,7 @@ public class gameActionTests {
 	}
 	@Test
 	public void testCreateSuggestion1() {
-		assertEquals("Bedroom", cp.getRoom());
+		assertEquals("Bedroom", cp.createSuggestion().getRoom());
 		assertEquals("Knife", cp.createSuggestion().getWeapon());
 		assertEquals("Mrs. Scarlet", cp.createSuggestion().getPerson());
 		
@@ -70,7 +70,7 @@ public class gameActionTests {
 		}
 		@Test
 		public void testCreateSuggestion2() {
-			assertEquals("Bedroom", cp.getRoom());
+			assertEquals("Bedroom", cp.createSuggestion().getRoom());
 			assertTrue(!cp.showCards().contains( cp.createSuggestion().getWeapon()));
 			assertTrue(!cp.showCards().contains(cp.createSuggestion().getPerson()));
 			
