@@ -13,7 +13,7 @@ public class guessResultPanel extends JPanel {
 	public guessResultPanel() {
 		responseLabel = new JLabel("Response");
 		response = new JTextField(10);
-		
+		response.setEditable(false);
 		add(responseLabel);
 		add(response);
 		

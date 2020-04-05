@@ -11,9 +11,9 @@ public class guessPanel extends JPanel{
 	private JTextField guess;
 	
 	public guessPanel() {
-		guessLabel = new JLabel("Whose turn?");
+		guessLabel = new JLabel("Guess Made");
 		guess = new JTextField(10);
-		
+		guess.setEditable(false);
 		add(guessLabel);
 		add(guess);
 		

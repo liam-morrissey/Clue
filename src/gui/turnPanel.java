@@ -13,7 +13,7 @@ public class turnPanel extends JPanel {
 	public turnPanel() {
 		turnLabel = new JLabel("Whose turn?");
 		turn = new JTextField(10);
-		
+		turn.setEditable(false);
 		add(turnLabel);
 		add(turn);
 	}

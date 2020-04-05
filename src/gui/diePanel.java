@@ -13,7 +13,7 @@ public class diePanel extends JPanel {
 	public diePanel() {
 		rollLabel = new JLabel("Roll");
 		roll = new JTextField(5);
-		
+		roll.setEditable(false);
 		add(rollLabel);
 		add(roll);
 		

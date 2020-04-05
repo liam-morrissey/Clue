@@ -1,3 +1,125 @@
+commit da5e474b1722ca47e541f67a8a09d5367859090e
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Fri Apr 3 17:21:45 2020 -0500
+
+    all suggestion handling tests pass
+
+commit f0cc98ab63e6673c4f94cfc46e279d3f4d096b8b
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Fri Apr 3 17:13:07 2020 -0500
+
+    Most tests passing
+
+commit 2b97d6b31758cd913d18404cbb4543aa21253582
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Fri Apr 3 16:58:46 2020 -0500
+
+    create failing tests for handling suggestions
+
+commit a4c4c55f43a0df474c8ca7e7eb9295139eee4ea3
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Fri Apr 3 15:48:22 2020 -0500
+
+    Refactoring
+
+commit 31aa56db8b87c318ae07c1f94b46197ade65d445
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Fri Apr 3 11:28:18 2020 -0600
+
+    Tests for disproveSuggestion now pass
+
+commit 00d775d2c2e6263bdeef4a5b998e102facc78e4e
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Fri Apr 3 10:40:32 2020 -0600
+
+    Created failing tests for disproveSuggestion
+
+commit 1a009a61c3e1c0f1a4a4948440b0a8f2a9100a87
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Fri Apr 3 10:26:03 2020 -0600
+
+    Created skeletons for the last two tests
+
+commit f95e59b7854da9ec2ab7a6ec31a36d190e5cbc0d
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Fri Apr 3 10:23:41 2020 -0600
+
+    Creat suggestion 2 now passes
+
+commit ae82860df7a5e2da6f92b9e6e12d7dbb97e4e99b
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Fri Apr 3 10:13:47 2020 -0600
+
+    Create suggestion 1 now passes
+
+commit 882d68d54257ece48d50561532ef57f637d1cea8
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Fri Apr 3 08:42:33 2020 -0600
+
+    Removed errors in createSuggestions
+
+commit 67045e2dbcd7582efc3a629e31a2289644b1fe99
+Merge: 5edcc70 40b2510
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Thu Apr 2 23:09:02 2020 -0500
+
+    Code for create suggestion tests
+
+commit 5edcc7007fa0f194304e5f69310a347ae8219bed
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Thu Apr 2 22:59:24 2020 -0500
+
+    Implement creating suggestions
+
+commit 40b251040cd269ca5aaeca69826a59565748ea41
+Merge: 619bd4f b640e16
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Thu Apr 2 19:58:51 2020 -0600
+
+    Fixed merge conflicts
+
+commit 619bd4fe55c90eff9d5f1b2947ffa70a7478298a
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Thu Apr 2 19:53:02 2020 -0600
+
+    Added failing test for testSelectTargetLocation
+
+commit b640e1666891f64e749d63727d6455e75aa725d6
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Thu Apr 2 20:49:54 2020 -0500
+
+    fixed Create suggestion tests: still failing
+
+commit 2338bb8880a3e5369108eaaf1a1b7e920ece2014
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Thu Apr 2 20:36:40 2020 -0500
+
+    implement create suggestion: failing tests
+
+commit bd007318d0fbdbe45d110184e1fb6b89571709b3
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Thu Apr 2 15:05:21 2020 -0600
+
+    Made testAccusationTest pass
+
+commit 9e7ec586513efbccf40980235f2d0813f82af73b
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Thu Apr 2 15:01:15 2020 -0600
+
+    Made testAccusationTest fail
+
+commit 19118ca4da97946b6e4df5728f765baf95ec6fa8
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Thu Apr 2 11:56:06 2020 -0600
+
+    Solution now created
+
+commit 3724115b0d9a3a8cbc2caf0dd249cde8942bda3f
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Fri Mar 27 19:15:03 2020 -0500
+
+    update git log
+
 commit 170eb4e19e260c32cdd1fd9d22edc3b6377d3da7
 Author: Liam Morrissey <liam.morrissey.family@gmail.com>
 Date:   Fri Mar 27 19:13:37 2020 -0500

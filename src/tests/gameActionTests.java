@@ -154,6 +154,7 @@ public class gameActionTests {
 	
 	@Test
 	public void testHandleSuggestion() {
+		//Set up for the test
 		Player cp1 = new ComputerPlayer("cpu1", Color.GREEN, board.getCellAt(17,3));
 		Player cp2 = new ComputerPlayer("cpu2", Color.WHITE, board.getCellAt(15,3));
 		Player hum = new HumanPlayer("human", Color.BLUE, board.getCellAt(1,3));
