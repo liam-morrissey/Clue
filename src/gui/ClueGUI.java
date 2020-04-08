@@ -43,8 +43,17 @@ public class ClueGUI extends JFrame {
 		return item;
 	}
 	
+	/**
+	 * Create the displayDetective option that will display the detective notes when clicked
+	 */
 	private JMenuItem displayDetective() {
 		JMenuItem dispDetect = new JMenuItem("Display Detective Notes");
+		dispDetect.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DetectiveNotes notesDialog = new DetectiveNotes();
+			}
+		});
 		return dispDetect;
 	}
 	
