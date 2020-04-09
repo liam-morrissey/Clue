@@ -76,6 +76,9 @@ public class Player {
 	public String getName() {
 		return playerName;
 	}
+	public Set<Card> getCardsInHand() {
+		return cardsInHand;
+	}
 	public void setName(String playerName) {
 		this.playerName = playerName;
 	}

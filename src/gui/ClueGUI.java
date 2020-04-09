@@ -11,6 +11,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import clueGame.Board;
+import clueGame.Player;
 
 public class ClueGUI extends JFrame {
 	private Board board;
@@ -25,8 +26,11 @@ public class ClueGUI extends JFrame {
 		setTitle("Clue Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		ControlPanel cPanel = new ControlPanel();
-		add(cPanel, BorderLayout.SOUTH);
+		ControlPanel contPanel = new ControlPanel();
+		add(contPanel, BorderLayout.SOUTH);
+		
+		MyCards cardPanel = new MyCards();
+		add(cardPanel, BorderLayout.EAST);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
