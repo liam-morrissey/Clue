@@ -230,6 +230,10 @@ public class Board {
 		return players;
 	}
 	
+	public ArrayList<String> getWeaponList() {
+		return weapons;
+	}
+	
 	public String getWeapon(int i) {
 		if(i < weapons.size() && i >= 0) return weapons.get(i);
 		return null;

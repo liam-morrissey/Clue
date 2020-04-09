@@ -10,8 +10,17 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import clueGame.Board;
+
 public class ClueGUI extends JFrame {
+	private Board board;
+	
 	public ClueGUI() {
+		// Initialize the board and load the necessary files
+		board = Board.getInstance();
+		board.setConfigFiles("clueBoard.csv", "roomLegend.txt", "player.txt", "weapons.txt");
+		board.initialize();
+		
 		setSize(new Dimension(800, 600));
 		setTitle("Clue Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
