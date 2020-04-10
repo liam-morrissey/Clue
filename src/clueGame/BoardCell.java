@@ -122,14 +122,12 @@ public class BoardCell {
 					break;
 				case 'D':
 					g.fillRect(x, y+height*9/10, width, height/10);
-					System.out.println("Down");
 					break;
 				case 'L':
 					g.fillRect(x, y, width/10, height);
 					break;
 				case 'R':
 					g.fillRect(x+width*9/10, y, width/10, height);
-					System.out.println("Right");
 					break;
 				case 'N':
 					g.drawString(Board.getInstance().getRoomName(cellText.charAt(0)), x, y);
