@@ -22,7 +22,7 @@ public class ClueGUI extends JFrame {
 		board.setConfigFiles("clueBoard.csv", "roomLegend.txt", "player.txt", "weapons.txt");
 		board.initialize();
 		
-		setSize(new Dimension(800, 600));
+		setSize(new Dimension(1000, 1000));
 		setTitle("Clue Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -35,6 +35,8 @@ public class ClueGUI extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
+		
+		add(board, BorderLayout.CENTER);
 	}
 	
 	/**

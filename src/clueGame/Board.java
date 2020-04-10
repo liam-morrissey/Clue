@@ -1,5 +1,6 @@
 package clueGame;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Field;
@@ -11,6 +12,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.JPanel;
+
 import java.util.Scanner;
 
 /**
@@ -19,7 +22,7 @@ import java.util.Scanner;
  * @author Liam Morrissey
  *
  */
-public class Board {
+public class Board extends JPanel{
 	public static final int NUM_WEAPONS = 6;
 	public static final int NUM_PLAYERS = 6;
 
@@ -258,6 +261,9 @@ public class Board {
 		return cardLegend.get(c);
 	}
 	
+	public String getRoomName(char c) {
+		return legend.get(c);
+	}
 	
 	
 	
@@ -460,4 +466,21 @@ public class Board {
 		
 		
 	}
+	
+	/**
+	 * This iterates through the boardcells and players and calls their draw functions
+	 */
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		for(int i=0; i< numRows;i++) {
+			for(int j=0; j< numCols; j++) {
+				BoardCell cell = board[i][j];
+				cell.draw(g);
+			}
+		}
+		for(Player p : players) {
+			p.draw(g);
+		}
+	}
+	
 }

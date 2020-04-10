@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -27,6 +28,12 @@ public class Player {
 	
 	// suggestion used for suggestions and accusations
 	protected Solution suggestion;
+	
+	//graphics vars
+	int x;
+	int y;
+	int width;
+	int height;
 	
 
 	public Player(String name, Color color, BoardCell boardCell) {
@@ -152,6 +159,23 @@ public class Player {
 	public void addToHand(Card delt) {
 		cardsInHand.add(delt);
 		addToSeen(delt);
+	}
+
+	//Helper function to update cell locations
+	private void updateDimensions() {
+		x = location.getX();
+		y = location.getY();
+		width = location.getWidth();
+		height = location.getHeight();
+	}
+	
+	//Draw function called in the board class
+	public void draw(Graphics g) {
+		updateDimensions();
+		g.setColor(color);
+		g.fillOval(x, y, width, height);
+		g.setColor(Color.BLACK);
+		g.drawOval(x, y, width, height);
 	}
 
 }
