@@ -9,12 +9,14 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import clueGame.Board;
 import clueGame.Player;
 
 public class ClueGUI extends JFrame {
 	private Board board;
+	String playerName;
 	
 	public ClueGUI() {
 		// Initialize the board and load the necessary files
@@ -25,6 +27,16 @@ public class ClueGUI extends JFrame {
 		setSize(new Dimension(1000, 1000));
 		setTitle("Clue Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// Find the human and retrieve their name
+		for(Player i : Board.getInstance().getPlayers()) {
+			if(i.getPlayerType().equals("Human")) {
+				playerName = i.getName();
+			}
+		}
+		
+		// Display the splash screen
+		JOptionPane.showMessageDialog(null, "You are " + playerName + ", press Next Player to begin", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 		
 		ControlPanel contPanel = new ControlPanel();
 		add(contPanel, BorderLayout.SOUTH);
