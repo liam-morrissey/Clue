@@ -17,6 +17,8 @@ import clueGame.Player;
 public class ClueGUI extends JFrame {
 	private Board board;
 	String playerName;
+	// Initially holds the index of the human player so they go first
+	private int currentPlayer;
 	
 	public ClueGUI() {
 		// Initialize the board and load the necessary files
@@ -28,11 +30,14 @@ public class ClueGUI extends JFrame {
 		setTitle("Clue Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		// Find the human and retrieve their name
+		// Find the human and retrieve their name and index
+		currentPlayer = 0;
 		for(Player i : Board.getInstance().getPlayers()) {
 			if(i.getPlayerType().equals("Human")) {
 				playerName = i.getName();
+				break;
 			}
+			currentPlayer++;
 		}
 		
 		// Display the splash screen

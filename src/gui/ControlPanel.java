@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,6 +18,7 @@ public class ControlPanel extends JPanel {
 		setLayout(new GridLayout(2, 3));
 		
 		nextPlayer = new JButton("Next player");
+		nextPlayer.addActionListener(new NextPlayerListener());
 		makeAccusation = new JButton("Make an accusation");
 		
 		turnPanel tPanel = new turnPanel();
@@ -32,6 +35,13 @@ public class ControlPanel extends JPanel {
 		add(dPanel);
 		add(gPanel);
 		add(grPanel);
+	}
+	
+	private class NextPlayerListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+		}
 	}
 	
 	private class diePanel extends JPanel {
