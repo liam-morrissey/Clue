@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -16,9 +17,8 @@ import clueGame.Player;
 
 public class ClueGUI extends JFrame {
 	private Board board;
-	String playerName;
-	// Initially holds the index of the human player so they go first
-	private int currentPlayer;
+	private Player currentPlayer;
+	private static Boolean playerHasMoved = false;
 	
 	public ClueGUI() {
 		// Initialize the board and load the necessary files
@@ -26,24 +26,24 @@ public class ClueGUI extends JFrame {
 		board.setConfigFiles("clueBoard.csv", "roomLegend.txt", "player.txt", "weapons.txt");
 		board.initialize();
 		
+		
+		
 		setSize(new Dimension(1000, 1000));
 		setTitle("Clue Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Find the human and retrieve their name and index
-		currentPlayer = 0;
 		for(Player i : Board.getInstance().getPlayers()) {
 			if(i.getPlayerType().equals("Human")) {
-				playerName = i.getName();
+				currentPlayer = i;
 				break;
 			}
-			currentPlayer++;
 		}
 		
 		// Display the splash screen
-		JOptionPane.showMessageDialog(null, "You are " + playerName + ", press Next Player to begin", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
+		// JOptionPane.showMessageDialog(null, "You are " + currentPlayer.getName() + ", press Next Player to begin", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 		
-		ControlPanel contPanel = new ControlPanel();
+		ControlPanel contPanel = new ControlPanel(currentPlayer);
 		add(contPanel, BorderLayout.SOUTH);
 		
 		MyCards cardPanel = new MyCards();
@@ -54,6 +54,21 @@ public class ClueGUI extends JFrame {
 		menuBar.add(createFileMenu());
 		
 		add(board, BorderLayout.CENTER);
+	}
+	
+	private void initialSetup() {
+		// Roll the dice
+		Random rand = new Random();
+		int diceRoll = rand.nextInt(6) + 1;
+		board.calcTargets(currentPlayer.getLocation(), diceRoll);
+	}
+	
+	public static Boolean getPlayerHasMoved() {
+		return playerHasMoved;
+	}
+	
+	public static void setPlayerHasMoved(Boolean set) {
+		playerHasMoved = set;
 	}
 	
 	/**

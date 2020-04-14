@@ -44,6 +44,8 @@ public class Board extends JPanel{
 	private String playerFile;
 	private String weaponFile;
 	
+	private Boolean drawTargets = false;
+	
 	private Solution theAnswer;
 	
 	private ArrayList<String> weapons = new ArrayList<String>();
@@ -62,6 +64,8 @@ public class Board extends JPanel{
 
 	public void initialize() {
 		initializeMemory();
+		
+		calcAdjacencies();
 		
 		try {
 			loadRoomConfig();
@@ -265,8 +269,6 @@ public class Board extends JPanel{
 		return legend.get(c);
 	}
 	
-	
-	
 	/**
 	 * 
 	 * @throws BadConfigFormatException
@@ -467,6 +469,10 @@ public class Board extends JPanel{
 		
 	}
 	
+	public void setDrawTargets(Boolean set) {
+		drawTargets = set;
+	}
+	
 	/**
 	 * This iterates through the boardcells and players and calls their draw functions
 	 */
@@ -475,7 +481,11 @@ public class Board extends JPanel{
 		for(int i=0; i< numRows;i++) {
 			for(int j=0; j< numCols; j++) {
 				BoardCell cell = board[i][j];
-				cell.draw(g);
+				if(drawTargets && targets.contains(cell)) {
+					cell.draw(g, Color.CYAN);
+				} else {
+					cell.draw(g, Color.YELLOW);
+				}
 			}
 		}
 		for(Player p : players) {

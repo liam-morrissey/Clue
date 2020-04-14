@@ -3,6 +3,8 @@ package gui;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,23 +13,38 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import clueGame.Board;
+import clueGame.Player;
+
 public class ControlPanel extends JPanel {
 	private JButton nextPlayer, makeAccusation;
+	private Board board;
+	protected Player currentPlayer;
+	protected ArrayList<Player> players;
+	protected turnPanel tPanel;
+	protected diePanel dPanel;
+	protected guessPanel gPanel;
+	protected guessResultPanel grPanel;
 	
-	public ControlPanel() {
+	public ControlPanel(Player currentPlayer) {
+		board = Board.getInstance();
+		this.currentPlayer = currentPlayer;
+		players = board.getPlayers();
+		
 		setLayout(new GridLayout(2, 3));
 		
 		nextPlayer = new JButton("Next player");
-		nextPlayer.addActionListener(new NextPlayerListener());
 		makeAccusation = new JButton("Make an accusation");
 		
-		turnPanel tPanel = new turnPanel();
+		tPanel = new turnPanel();
 		
-		diePanel dPanel = new diePanel();
+		dPanel = new diePanel();
 		
-		guessPanel gPanel = new guessPanel();
+		gPanel = new guessPanel();
 		
-		guessResultPanel grPanel = new guessResultPanel();
+		grPanel = new guessResultPanel();
+		
+		nextPlayer.addActionListener(new NextPlayerListener());
 		
 		add(tPanel);
 		add(nextPlayer);
@@ -40,11 +57,32 @@ public class ControlPanel extends JPanel {
 	private class NextPlayerListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			// If it is the player's turn and they have not moved, do nothing
+			if(currentPlayer.getPlayerType() == "Human" && !ClueGUI.getPlayerHasMoved()) {
+				return;
+			}
+			
+			// Roll the dice
+			Random rand = new Random();
+			int diceRoll = rand.nextInt(6) + 1;
+			board.calcTargets(currentPlayer.getLocation(), diceRoll);
+			
+			// Display targets and s
+			if(currentPlayer.getPlayerType() == "Human") {
+				board.setDrawTargets(true);
+				ClueGUI.setPlayerHasMoved(false);
+			} else {
+				board.setDrawTargets(false);
+			}
+			board.repaint();
+			
+			tPanel.setText(currentPlayer.getName());
+			
+			dPanel.setText(Integer.toString(diceRoll));
 		}
 	}
 	
-	private class diePanel extends JPanel {
+	public class diePanel extends JPanel {
 		private JLabel rollLabel;
 		private JTextField roll;
 		
@@ -57,9 +95,13 @@ public class ControlPanel extends JPanel {
 			
 			setBorder(new TitledBorder(new EtchedBorder(), "Die"));
 		}
+		
+		public void setText(String text) {
+			roll.setText(text);
+		}
 	}
 	
-	private class guessPanel extends JPanel{
+	public class guessPanel extends JPanel{
 		private JLabel guessLabel;
 		private JTextField guess;
 		
@@ -99,6 +141,10 @@ public class ControlPanel extends JPanel {
 			turn.setEditable(false);
 			add(turnLabel);
 			add(turn);
+		}
+		
+		public void setText(String text) {
+			turn.setText(text);
 		}
 	}
 }

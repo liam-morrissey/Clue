@@ -100,11 +100,11 @@ public class BoardCell {
 	}
 
 	//Function called in paintComponent to draw object
-	public void draw(Graphics g) {
+	public void draw(Graphics g, Color cellColor) {
 		updateDimensions();
 		if(isWalkway()) {
 			//drawing for walkways
-			g.setColor(Color.YELLOW);
+			g.setColor(cellColor);
 			g.fillRect(x, y, width, height);
 			g.setColor(Color.BLACK);
 			g.drawRect(x, y, width, height);
