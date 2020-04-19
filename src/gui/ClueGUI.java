@@ -44,7 +44,7 @@ public class ClueGUI extends JFrame {
 		}
 		
 		// Display the splash screen
-		// JOptionPane.showMessageDialog(null, "You are " + currentPlayer.getName() + ", press Next Player to begin", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "You are " + currentPlayer.getName() + ", press Next Player to begin", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 		
 		ControlPanel contPanel = new ControlPanel(currentPlayer);
 		add(contPanel, BorderLayout.SOUTH);
@@ -57,14 +57,6 @@ public class ClueGUI extends JFrame {
 		menuBar.add(createFileMenu());
 		
 		add(board, BorderLayout.CENTER);
-	}
-	
-	public static Boolean getPlayerHasMoved() {
-		return playerHasMoved;
-	}
-	
-	public static void setPlayerHasMoved(Boolean set) {
-		playerHasMoved = set;
 	}
 	
 	/**

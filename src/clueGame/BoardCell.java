@@ -3,6 +3,7 @@ package clueGame;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 /**
  * @author Brandt Ross
@@ -18,6 +19,7 @@ public class BoardCell{
 	private DoorDirection dir;
 	
 	//graphics vars
+	Rectangle rect;
 	int x;
 	int y;
 	int width;
@@ -97,6 +99,7 @@ public class BoardCell{
 		height = boardDim.height / board.getNumRows();
 		x = width * column;
 		y = height * row;
+		rect = new Rectangle(x,y,width,height);
 	}
 
 	//Function called in paintComponent to draw object
@@ -136,6 +139,11 @@ public class BoardCell{
 			}
 		}
 		
+	}
+	
+	public boolean containsClick(int mouseX, int mouseY) {
+		if(rect.contains(mouseX,mouseY)) return true;
+		return false;
 	}
 
 	

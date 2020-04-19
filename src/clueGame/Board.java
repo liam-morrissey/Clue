@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.util.Scanner;
@@ -47,6 +48,7 @@ public class Board extends JPanel{
 	private String weaponFile;
 	
 	private Boolean drawTargets = false;
+	private boolean playerMoved = true;
 	
 	private Solution theAnswer;
 	
@@ -80,8 +82,9 @@ public class Board extends JPanel{
 		} catch (FileNotFoundException | BadConfigFormatException e) {
 			e.printStackTrace();
 		}
-		
+		addMouseListener(new MListener());
 		dealDeck();
+		
 	}
 
 	private void initializeMemory() {
@@ -178,7 +181,8 @@ public class Board extends JPanel{
 		//makes sure previous target selection is cleared
 		targets.clear();
 		visited.add(startCell);
-		findAllTargets(startCell, pathLength);
+		findAllTargets(startCell, pathLength);	
+		visited.clear();
 	}
 
 	// Recursive function that finds targets
@@ -186,7 +190,6 @@ public class Board extends JPanel{
 		if(getAdjList(startCell) == null) {
 			return;
 		}
-		
 		// Loops through adjacent cells
 		for(BoardCell adjCell : getAdjList(startCell)) {
 			if(!visited.contains(adjCell)) {
@@ -246,9 +249,18 @@ public class Board extends JPanel{
 		playerTurn = (turn-1)%players.size();
 	}
 	
+	//function to move to next turn
 	public Player nextTurn() {
 		playerTurn = ++playerTurn%players.size();
 		return players.get(playerTurn);
+	}
+	
+	public void setPlayerHasMoved(boolean b) {
+		playerMoved = b;
+	}
+	
+	public boolean getPlayerHasMoved() {
+		return playerMoved;
 	}
 	
 	public ArrayList<String> getWeaponList() {
@@ -510,9 +522,22 @@ public class Board extends JPanel{
 	private class MListener implements MouseListener{
 
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
-			
-			
+		public void mouseClicked(MouseEvent event) {
+			Player cPlayer = players.get(playerTurn);
+			if(cPlayer.getPlayerType() != "Human" ) {
+				return;
+			}
+			else {
+				for(BoardCell cell: targets) {
+					if(cell.containsClick(event.getX(),event.getY())) {
+						cPlayer.setLocation(cell);
+						playerMoved = true;
+						repaint();
+						return;
+					}
+					JOptionPane.showMessageDialog(null, "Invalid location selected. Try again.", "Alert" ,JOptionPane.ERROR_MESSAGE);
+				}
+			}
 		}
 
 		@Override
@@ -527,6 +552,8 @@ public class Board extends JPanel{
 		@Override
 		public void mouseReleased(MouseEvent arg0) {}
 	}
+
+	
 	
 }
 
