@@ -535,8 +535,8 @@ public class Board extends JPanel{
 						repaint();
 						return;
 					}
-					JOptionPane.showMessageDialog(null, "Invalid location selected. Try again.", "Alert" ,JOptionPane.ERROR_MESSAGE);
 				}
+				JOptionPane.showMessageDialog(null, "Invalid location selected. Try again.", "Alert" ,JOptionPane.ERROR_MESSAGE);
 			}
 		}
 
