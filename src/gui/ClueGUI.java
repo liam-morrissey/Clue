@@ -33,11 +33,14 @@ public class ClueGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Find the human and retrieve their name and index
+		int index = 0;
 		for(Player i : Board.getInstance().getPlayers()) {
 			if(i.getPlayerType().equals("Human")) {
 				currentPlayer = i;
+				board.setFirstTurn(index);
 				break;
 			}
+			index++;
 		}
 		
 		// Display the splash screen
@@ -54,13 +57,6 @@ public class ClueGUI extends JFrame {
 		menuBar.add(createFileMenu());
 		
 		add(board, BorderLayout.CENTER);
-	}
-	
-	private void initialSetup() {
-		// Roll the dice
-		Random rand = new Random();
-		int diceRoll = rand.nextInt(6) + 1;
-		board.calcTargets(currentPlayer.getLocation(), diceRoll);
 	}
 	
 	public static Boolean getPlayerHasMoved() {

@@ -10,7 +10,7 @@ import java.awt.Graphics;
  * 
  * Each instance is a cell that holds values for the cells row and column
  */
-public class BoardCell {
+public class BoardCell{
 	private int row;
 	private int column;
 	// Is a string because some have two chars

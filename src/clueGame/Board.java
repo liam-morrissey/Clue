@@ -1,6 +1,8 @@
 package clueGame;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Field;
@@ -50,6 +52,8 @@ public class Board extends JPanel{
 	
 	private ArrayList<String> weapons = new ArrayList<String>();
 	private ArrayList<Player> players = new ArrayList<Player>();
+	
+	private int playerTurn;
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
@@ -235,6 +239,16 @@ public class Board extends JPanel{
 	
 	public ArrayList<Player> getPlayers(){
 		return players;
+	}
+	
+	public void setFirstTurn(int turn) {
+		//because a next turn action triggers the start of the game, the turn needs to be -1
+		playerTurn = (turn-1)%players.size();
+	}
+	
+	public Player nextTurn() {
+		playerTurn = ++playerTurn%players.size();
+		return players.get(playerTurn);
 	}
 	
 	public ArrayList<String> getWeaponList() {
@@ -493,4 +507,26 @@ public class Board extends JPanel{
 		}
 	}
 	
+	private class MListener implements MouseListener{
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {}
+	}
+	
 }
+

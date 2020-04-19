@@ -73,4 +73,9 @@ public class ComputerPlayer extends Player {
 	public void setPrevRoom(BoardCell p) {
 		prevRoom = p;
 	}
+	
+	//This function moves the computer player based on the result of the pickLocation function
+	public void makeMove(Set<BoardCell> set) {
+		this.setLocation(pickLocation(set));
+	}
 }

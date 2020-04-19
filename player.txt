@@ -1,6 +1,6 @@
-Mr. Green, green, 0, 1, Computer
-Mr. Orange, orange, 2, 3, Computer
+Mr. Green, green, 3, 0, Computer
+Mr. Orange, orange, 3, 1, Computer
 Mr. White, white, 3, 4, Human
 Mrs. Peacock, purple, 6, 6, Computer
-Someone, blue, 1, 1, Computer
+Someone, blue, 6, 9, Computer
 Mrs. Scarlet, red, 5, 6, Computer

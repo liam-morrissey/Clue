@@ -1,3 +1,75 @@
+commit 1559ad9922b546e521b105ac2f224e861313fb86
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Fri Apr 10 12:32:16 2020 -0500
+
+    remove debug statements
+
+commit 1911530f20f5bb6f70f3f745284b955cbe8a60e1
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Fri Apr 10 11:25:14 2020 -0600
+
+    Created the splash screen
+
+commit b5978788bf1d0eb3d728e95a4702a08c40ee5d0c
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Fri Apr 10 12:13:37 2020 -0500
+
+    fixed doors
+
+commit 7edba5c9b3b924aa7bd7398e6b48be3b3d3d7aa7
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Fri Apr 10 11:56:38 2020 -0500
+
+    board drawing works
+
+commit 08d9853195209a8db4b6873084e131f16b5e09e5
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Wed Apr 8 21:24:32 2020 -0600
+
+    Created My Cards side bar
+
+commit fa219ac49a0c91259a622f56e632ce23cfa39267
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Wed Apr 8 18:06:57 2020 -0600
+
+    Detective notes dialog now populated
+
+commit 341b28699ad7cc85fd187c344c3c58936dc57bc3
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Wed Apr 8 12:38:23 2020 -0600
+
+    Created detective notes dialog
+
+commit cbdc59e2d95f30ded98ea70e21d957d5083b8d6f
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Wed Apr 8 12:20:46 2020 -0600
+
+    Created file drop down menu
+
+commit ef4c6c926ceb19ea4190695a6f830150ecf051f3
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Tue Apr 7 11:36:02 2020 -0600
+
+    Added where names should go to csv file
+
+commit 2ce4e8f90f264609b31a31922c79d1f753e4b09e
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Tue Apr 7 11:25:43 2020 -0600
+
+    Compacted control panel to single class
+
+commit 8d61a5cdcf07b68e538cae31d83807d74c3dcbd2
+Author: Liam Morrissey <liam.morrissey.family@gmail.com>
+Date:   Sun Apr 5 13:12:28 2020 -0500
+
+    Refactoring and updating to meet standards
+
+commit a806ebde344695368453d93a9fb7e32a6c19cc22
+Author: BrandtRoss <bross@mymail.mines.edu>
+Date:   Sat Apr 4 16:29:17 2020 -0600
+
+    Created control panel for gui
+
 commit da5e474b1722ca47e541f67a8a09d5367859090e
 Author: Liam Morrissey <liam.morrissey.family@gmail.com>
 Date:   Fri Apr 3 17:21:45 2020 -0500

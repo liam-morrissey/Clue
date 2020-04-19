@@ -58,9 +58,11 @@ public class ControlPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// If it is the player's turn and they have not moved, do nothing
-			if(currentPlayer.getPlayerType() == "Human" && !ClueGUI.getPlayerHasMoved()) {
-				return;
-			}
+			/*
+			 * if(currentPlayer.getPlayerType() == "Human" && !ClueGUI.getPlayerHasMoved())
+			 * { return; }
+			 */
+			currentPlayer = board.nextTurn();
 			
 			// Roll the dice
 			Random rand = new Random();
@@ -73,6 +75,7 @@ public class ControlPanel extends JPanel {
 				ClueGUI.setPlayerHasMoved(false);
 			} else {
 				board.setDrawTargets(false);
+				currentPlayer.makeMove(board.getTargets());
 			}
 			board.repaint();
 			

@@ -177,5 +177,7 @@ public class Player {
 		g.setColor(Color.BLACK);
 		g.drawOval(x, y, width, height);
 	}
+	
+	public void makeMove(Set<BoardCell> set) {};
 
 }
