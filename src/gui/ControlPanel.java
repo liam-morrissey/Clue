@@ -8,13 +8,16 @@ import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import clueGame.Board;
+import clueGame.Card;
 import clueGame.Player;
+import clueGame.ComputerPlayer;
 
 public class ControlPanel extends JPanel {
 	private JButton nextPlayer, makeAccusation;
@@ -58,9 +61,9 @@ public class ControlPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// If it is the player's turn and they have not moved, do nothing
-			
-			  if(currentPlayer.getPlayerType() == "Human" && !board.getPlayerHasMoved()) {
-			  return; }
+			if(currentPlayer.getPlayerType() == "Human" && !board.getPlayerHasMoved()) {
+				return;
+			}
 			 
 			currentPlayer = board.nextTurn();
 			
@@ -74,6 +77,26 @@ public class ControlPanel extends JPanel {
 				board.setDrawTargets(true);
 				board.setPlayerHasMoved(false);
 			} else {
+				// Make a suggestion if they are in a room
+				// TODO: Handle accusations
+				if(currentPlayer.getLocation().isDoorway()) {
+					currentPlayer.createSuggestion();
+					String accusedPlayer = currentPlayer.getSuggestion().getPerson().getName();
+					// Find the player that has been suggested and move them to the room
+					for(Player i : board.getPlayers()) {
+						if(i.getName().equals(accusedPlayer)) {
+							i.setLocation(currentPlayer.getLocation());
+						}
+					}
+					
+					Card disproved = board.handleSuggestion(currentPlayer);
+					// Show the card that was used to disprove
+					if(disproved != null) {
+						gPanel.setText(currentPlayer.getSuggestion().toString());
+						grPanel.setText(disproved.getName());
+					}
+					currentPlayer.setPrevRoom(currentPlayer.getLocation());
+				}
 				board.setDrawTargets(false);
 				currentPlayer.makeMove(board.getTargets());
 			}
@@ -110,12 +133,16 @@ public class ControlPanel extends JPanel {
 		
 		public guessPanel() {
 			guessLabel = new JLabel("Guess Made");
-			guess = new JTextField(10);
+			guess = new JTextField(20);
 			guess.setEditable(false);
 			add(guessLabel);
 			add(guess);
 			
 			setBorder(new TitledBorder(new EtchedBorder(), "Guess"));
+		}
+		
+		public void setText(String text) {
+			guess.setText(text);
 		}
 	}
 	
@@ -131,6 +158,10 @@ public class ControlPanel extends JPanel {
 			add(response);
 			
 			setBorder(new TitledBorder(new EtchedBorder(), "Guess Result"));
+		}
+		
+		public void setText(String text) {
+			response.setText(text);
 		}
 	}
 	

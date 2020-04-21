@@ -30,7 +30,7 @@ public class C18A1_Test {
 		assertEquals(board.getPlayer(0).getName(), "Mr. Green");
 		assertEquals(board.getPlayer(0).getColor(), Color.green);
 		assertEquals(board.getPlayer(0).getPlayerType(), "Computer");
-		assertEquals(board.getPlayer(0).getLocation(), board.getCellAt(0,1));
+		assertEquals(board.getPlayer(0).getLocation(), board.getCellAt(3,0));
 	}
 	@Test
 	public void testLoadPlayer3() {

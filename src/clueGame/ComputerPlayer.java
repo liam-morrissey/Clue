@@ -14,7 +14,8 @@ import java.util.Set;
  */
 public class ComputerPlayer extends Player {
 	
-	private BoardCell prevRoom;
+	//private BoardCell prevRoom;
+	private char prevRoom;
 	
 	public String getPlayerType() {
 		return "Computer";
@@ -30,7 +31,7 @@ public class ComputerPlayer extends Player {
 		
 		// Find if one of the spaces is a doorway and enter it if it is
 		for(BoardCell testRoom : targets) {
-			if(testRoom.isDoorway() && testRoom != prevRoom)
+			if(testRoom.isDoorway() && testRoom.getInitial() != prevRoom)
 				return testRoom;
 		}
 		
@@ -51,7 +52,7 @@ public class ComputerPlayer extends Player {
 		return;
 	}
 	
-
+	@Override
 	public void createSuggestion() {
 		suggestion.setPerson(randCardSelector(possiblePeople));
 		suggestion.setRoom(getCurrentRoomCard());
@@ -70,11 +71,13 @@ public class ComputerPlayer extends Player {
 		return null;
 	}
 		
+	@Override
 	public void setPrevRoom(BoardCell p) {
-		prevRoom = p;
+		prevRoom = p.getInitial();
 	}
 	
 	//This function moves the computer player based on the result of the pickLocation function
+	@Override
 	public void makeMove(Set<BoardCell> set) {
 		this.setLocation(pickLocation(set));
 	}

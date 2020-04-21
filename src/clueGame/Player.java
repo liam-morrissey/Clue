@@ -178,6 +178,9 @@ public class Player {
 		g.drawOval(x, y, width, height);
 	}
 	
-	public void makeMove(Set<BoardCell> set) {};
+	public void makeMove(Set<BoardCell> set) {}
 
+	public void createSuggestion() {}
+
+	public void setPrevRoom(BoardCell location2) {}
 }

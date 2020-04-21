@@ -441,15 +441,15 @@ public class Board extends JPanel{
 	
 	//color converter from stack overflow
 	public Color convertColor(String strColor) {
-		 Color color;
-		 try {
-		 // We can use reflection to convert the string to a color
-		 Field field = Class.forName("java.awt.Color").getField(strColor.trim());
-		 color = (Color)field.get(null);
-		 } catch (Exception e) {
-		 color = null; // Not defined
-		 }
-		 return color;
+		Color color;
+		try {
+			// We can use reflection to convert the string to a color
+			Field field = Class.forName("java.awt.Color").getField(strColor.trim());
+			color = (Color)field.get(null);
+		} catch (Exception e) {
+			color = null; // Not defined
+		}
+		return color;
 	}
 	
 	public Solution getSolution() {
@@ -491,8 +491,6 @@ public class Board extends JPanel{
 			players.get(dealTo).addToHand(i);
 			dealTo++;
 		}
-		
-		
 	}
 	
 	public void setDrawTargets(Boolean set) {
@@ -552,8 +550,5 @@ public class Board extends JPanel{
 		@Override
 		public void mouseReleased(MouseEvent arg0) {}
 	}
-
-	
-	
 }
 

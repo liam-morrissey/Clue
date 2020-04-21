@@ -48,6 +48,6 @@ public class Solution {
 	}
 	
 	public String toString() {
-		return "Person: " + person.getName() + " Room: " + room.getName() + " Weapon: " + weapon.getName();
+		return person.getName() + " " + room.getName() + " " + weapon.getName();
 	}
 }
