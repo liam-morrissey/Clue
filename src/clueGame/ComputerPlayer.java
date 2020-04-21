@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 /**
  * 
  * @author Liam Morrissey
@@ -16,6 +18,7 @@ public class ComputerPlayer extends Player {
 	
 	//private BoardCell prevRoom;
 	private char prevRoom;
+	private Boolean makeSuggestion = true;
 	
 	public String getPlayerType() {
 		return "Computer";
@@ -49,11 +52,18 @@ public class ComputerPlayer extends Player {
 	}
 	
 	public void makeAccusation() {
+		Board board = Board.getInstance();
+		if(board.checkAccusation(suggestion)) {
+			JOptionPane.showMessageDialog(null, getName() + " has solved with the solution " + suggestion);
+		}
 		return;
 	}
 	
 	@Override
 	public void createSuggestion() {
+		if(!makeSuggestion) {
+			makeAccusation();
+		}
 		suggestion.setPerson(randCardSelector(possiblePeople));
 		suggestion.setRoom(getCurrentRoomCard());
 		suggestion.setWeapon(randCardSelector(possibleWeapons));
@@ -70,7 +80,7 @@ public class ComputerPlayer extends Player {
 		}
 		return null;
 	}
-		
+	
 	@Override
 	public void setPrevRoom(BoardCell p) {
 		prevRoom = p.getInitial();
@@ -80,5 +90,14 @@ public class ComputerPlayer extends Player {
 	@Override
 	public void makeMove(Set<BoardCell> set) {
 		this.setLocation(pickLocation(set));
+	}
+	
+	@Override
+	public void flagSuggestion() {
+		// Return if the room card is in their hand
+		if(getCardsInHand().contains(getCurrentRoomCard())) {
+			return;
+		}
+		makeSuggestion = false;
 	}
 }

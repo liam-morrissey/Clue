@@ -26,7 +26,7 @@ public class ClueGUI extends JFrame {
 		board.setConfigFiles("clueBoard.csv", "roomLegend.txt", "player.txt", "weapons.txt");
 		board.initialize();
 		
-		
+		System.out.println(board.getSolution());
 		
 		setSize(new Dimension(1000, 1000));
 		setTitle("Clue Game");

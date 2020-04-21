@@ -78,7 +78,6 @@ public class ControlPanel extends JPanel {
 				board.setPlayerHasMoved(false);
 			} else {
 				// Make a suggestion if they are in a room
-				// TODO: Handle accusations
 				if(currentPlayer.getLocation().isDoorway()) {
 					currentPlayer.createSuggestion();
 					String accusedPlayer = currentPlayer.getSuggestion().getPerson().getName();
@@ -94,7 +93,10 @@ public class ControlPanel extends JPanel {
 					if(disproved != null) {
 						gPanel.setText(currentPlayer.getSuggestion().toString());
 						grPanel.setText(disproved.getName());
+					} if(disproved == null) {
+						currentPlayer.flagSuggestion();
 					}
+					
 					currentPlayer.setPrevRoom(currentPlayer.getLocation());
 				}
 				board.setDrawTargets(false);

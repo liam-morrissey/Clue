@@ -183,4 +183,6 @@ public class Player {
 	public void createSuggestion() {}
 
 	public void setPrevRoom(BoardCell location2) {}
+
+	public void flagSuggestion() {}
 }
