@@ -14,8 +14,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import gui.GuessDialog;
 
 import java.util.Scanner;
 
@@ -522,6 +525,7 @@ public class Board extends JPanel{
 		@Override
 		public void mouseClicked(MouseEvent event) {
 			Player cPlayer = players.get(playerTurn);
+			Board b = Board.getInstance();
 			if(cPlayer.getPlayerType() != "Human" ) {
 				return;
 			}
@@ -531,6 +535,9 @@ public class Board extends JPanel{
 						cPlayer.setLocation(cell);
 						playerMoved = true;
 						repaint();
+						if(cell.isDoorway()) {
+							new GuessDialog((JFrame) b.getTopLevelAncestor(),b.getRoomName(cell.getInitial()));
+						}
 						return;
 					}
 				}
