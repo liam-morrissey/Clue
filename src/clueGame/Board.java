@@ -245,6 +245,14 @@ public class Board extends JPanel{
 		if(i<players.size() && i>=0) return players.get(i);
 		else return null;
 	}
+	
+	public Player getPlayer(String s) {
+		for(Player p : players) {
+			if(p.getName() == s)
+				return p;
+		}
+		return null;
+	}
 
 	public ArrayList<Player> getPlayers(){
 		return players;
@@ -550,6 +558,9 @@ public class Board extends JPanel{
 							GuessDialog gDialog= new GuessDialog((JFrame) b.getTopLevelAncestor(),b.getRoomName(cell.getInitial()));
 							cPlayer.setSuggestion(gDialog.getSolution());
 							if(cPlayer.getSuggestion()!=null) {
+								Player movePlayer = getPlayer(cPlayer.getSuggestion().getPerson().getName());
+								movePlayer.setLocation(cell);
+								repaint();
 								cPanel.updateDisprove(handleSuggestion(cPlayer));
 							}
 						}
